@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\ProfesseurRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProfesseurRepository::class)]
@@ -15,40 +13,29 @@ class Professeur
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 80)]
+    #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 80)]
+    #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
     #[ORM\Column]
     private ?int $numRue = null;
 
-    #[ORM\Column(length: 120)]
+    #[ORM\Column(length: 255)]
     private ?string $rue = null;
 
     #[ORM\Column]
     private ?int $copos = null;
 
-    #[ORM\Column(length: 80)]
+    #[ORM\Column(length: 255)]
     private ?string $ville = null;
 
-    #[ORM\Column]
-    private ?int $tel = null;
+    #[ORM\Column(length: 255)]
+    private ?string $tel = null;
 
-    #[ORM\Column(length: 120)]
+    #[ORM\Column(length: 255)]
     private ?string $mail = null;
-
-    /**
-     * @var Collection<int, TypeInstrument>
-     */
-    #[ORM\ManyToMany(targetEntity: TypeInstrument::class, inversedBy: 'professeurs')]
-    private Collection $typeInstrument;
-
-    public function __construct()
-    {
-        $this->typeInstrument = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -127,12 +114,12 @@ class Professeur
         return $this;
     }
 
-    public function getTel(): ?int
+    public function getTel(): ?string
     {
         return $this->tel;
     }
 
-    public function setTel(int $tel): static
+    public function setTel(string $tel): static
     {
         $this->tel = $tel;
 
@@ -147,30 +134,6 @@ class Professeur
     public function setMail(string $mail): static
     {
         $this->mail = $mail;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, TypeInstrument>
-     */
-    public function getTypeInstrument(): Collection
-    {
-        return $this->typeInstrument;
-    }
-
-    public function addTypeInstrument(TypeInstrument $typeInstrument): static
-    {
-        if (!$this->typeInstrument->contains($typeInstrument)) {
-            $this->typeInstrument->add($typeInstrument);
-        }
-
-        return $this;
-    }
-
-    public function removeTypeInstrument(TypeInstrument $typeInstrument): static
-    {
-        $this->typeInstrument->removeElement($typeInstrument);
 
         return $this;
     }
