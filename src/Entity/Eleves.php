@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ElevesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,6 +27,17 @@ class Eleves
 
     #[ORM\ManyToOne(inversedBy: 'eleves')]
     private ?Responsables $responsables = null;
+
+    /**
+     * @var Collection<int, Inscriptions>
+     */
+    #[ORM\OneToMany(targetEntity: Inscriptions::class, mappedBy: 'eleves')]
+    private Collection $inscriptions;
+
+    public function __construct()
+    {
+        $this->inscriptions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -75,6 +88,36 @@ class Eleves
     public function setResponsables(?Responsables $responsables): static
     {
         $this->responsables = $responsables;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Inscriptions>
+     */
+    public function getInscriptions(): Collection
+    {
+        return $this->inscriptions;
+    }
+
+    public function addInscription(Inscriptions $inscription): static
+    {
+        if (!$this->inscriptions->contains($inscription)) {
+            $this->inscriptions->add($inscription);
+            $inscription->setEleves($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInscription(Inscriptions $inscription): static
+    {
+        if ($this->inscriptions->removeElement($inscription)) {
+            // set the owning side to null (unless already changed)
+            if ($inscription->getEleves() === $this) {
+                $inscription->setEleves(null);
+            }
+        }
 
         return $this;
     }
