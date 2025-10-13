@@ -21,7 +21,7 @@ class Paiement
     private ?\DateTime $datePaiement = null;
 
     #[ORM\ManyToOne(inversedBy: 'paiement')]
-    private ?Inscription $inscription = null;
+    private ?Inscriptions $inscriptions = null;
 
     public function getId(): ?int
     {
@@ -52,14 +52,14 @@ class Paiement
         return $this;
     }
 
-    public function getInscription(): ?Inscription
+    public function getInscriptions(): ?Inscriptions
     {
-        return $this->inscription;
+        return $this->inscriptions;
     }
 
-    public function setInscription(?Inscription $inscription): static
+    public function setInscriptions(?Inscriptions $inscriptions): static
     {
-        $this->inscription = $inscription;
+        $this->inscriptions = $inscriptions;
 
         return $this;
     }

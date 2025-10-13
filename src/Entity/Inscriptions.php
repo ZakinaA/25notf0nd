@@ -22,6 +22,9 @@ class Inscriptions
     #[ORM\ManyToOne(inversedBy: 'inscriptions')]
     private ?Cours $cours = null;
 
+    #[ORM\OneToMany(targetEntity: Paiement::class, mappedBy: 'inscriptions')]
+    private Collection $paiement;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,33 @@ class Inscriptions
     public function setCours(?Cours $cours): static
     {
         $this->cours = $cours;
+
+        return $this;
+    }
+
+    public function getPaiement(): Collection
+    {
+        return $this->paiement;
+    }
+
+     public function addPaiement(Paiement $paiement): static
+    {
+        if (!$this->paiement->contains($paiement)) {
+            $this->paiement->add($paiement);
+            $paiement->setInscription($this);
+        }
+
+        return $this;
+    }
+
+    public function removePaiement(Paiement $paiement): static
+    {
+        if ($this->paiement->removeElement($paiement)) {
+            // set the owning side to null (unless already changed)
+            if ($paiement->getInscriptions() === $this) {
+                $paiement->setInscriptions(null);
+            }
+        }
 
         return $this;
     }
