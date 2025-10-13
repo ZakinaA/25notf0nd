@@ -29,6 +29,9 @@ class ContratPret
     #[ORM\Column(length: 255)]
     private ?string $etatDetailleRetour = null;
 
+    #[ORM\ManyToOne(inversedBy: 'contratPrets')]
+    private ?Instrument $instrument = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class ContratPret
     public function setEtatDetailleRetour(string $etatDetailleRetour): static
     {
         $this->etatDetailleRetour = $etatDetailleRetour;
+
+        return $this;
+    }
+
+    public function getInstrument(): ?Instrument
+    {
+        return $this->instrument;
+    }
+
+    public function setInstrument(?Instrument $instrument): static
+    {
+        $this->instrument = $instrument;
 
         return $this;
     }
