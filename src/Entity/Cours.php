@@ -30,10 +30,6 @@ class Cours
     #[ORM\OneToMany(targetEntity: Inscriptions::class, mappedBy: 'cours')]
     private Collection $inscriptions;
 
-    #[ORM\ManyToOne(inversedBy: 'cours')]
-    private ?Jour $jour = null;
-    private ?Type $type = null;
-
     public function __construct()
     {
         $this->inscriptions = new ArrayCollection();
@@ -109,24 +105,5 @@ class Cours
 
         return $this;
     }
-
-    public function getJour(): ?Jour
-    {
-        return $this->jour;
-    }
-
-    public function setJour(?Jour $jour): static
-    {
-        $this->jour = $jour;
-    public function getType(): ?Type
-    {
-        return $this->type;
-    }
-
-    public function setType(?Type $type): static
-    {
-        $this->type = $type;
-
-        return $this;
-    }
 }
+
