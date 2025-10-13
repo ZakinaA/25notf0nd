@@ -46,9 +46,16 @@ class Instrument
     #[ORM\OneToMany(targetEntity: ContratPret::class, mappedBy: 'instrument')]
     private Collection $contratPrets;
 
+    /**
+     * @var Collection<int, Intervention>
+     */
+    #[ORM\OneToMany(targetEntity: Intervention::class, mappedBy: 'instrument')]
+    private Collection $interventions;
+
     public function __construct()
     {
         $this->contratPrets = new ArrayCollection();
+        $this->interventions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -176,6 +183,36 @@ class Instrument
             // set the owning side to null (unless already changed)
             if ($contratPret->getInstrument() === $this) {
                 $contratPret->setInstrument(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Intervention>
+     */
+    public function getInterventions(): Collection
+    {
+        return $this->interventions;
+    }
+
+    public function addIntervention(Intervention $intervention): static
+    {
+        if (!$this->interventions->contains($intervention)) {
+            $this->interventions->add($intervention);
+            $intervention->setInstrument($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIntervention(Intervention $intervention): static
+    {
+        if ($this->interventions->removeElement($intervention)) {
+            // set the owning side to null (unless already changed)
+            if ($intervention->getInstrument() === $this) {
+                $intervention->setInstrument(null);
             }
         }
 
