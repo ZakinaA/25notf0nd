@@ -29,6 +29,9 @@ class Intervention
     #[ORM\Column]
     private ?int $quotitent = null;
 
+    #[ORM\ManyToOne(inversedBy: 'interventions')]
+    private ?Professionnel $professionnel = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class Intervention
     public function setQuotitent(int $quotitent): static
     {
         $this->quotitent = $quotitent;
+
+        return $this;
+    }
+
+    public function getProfessionnel(): ?Professionnel
+    {
+        return $this->professionnel;
+    }
+
+    public function setProfessionnel(?Professionnel $professionnel): static
+    {
+        $this->professionnel = $professionnel;
 
         return $this;
     }
