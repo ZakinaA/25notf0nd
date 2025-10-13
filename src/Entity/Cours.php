@@ -30,6 +30,12 @@ class Cours
     #[ORM\OneToMany(targetEntity: Inscriptions::class, mappedBy: 'cours')]
     private Collection $inscriptions;
 
+    #[ORM\ManyToOne(inversedBy: 'cours')]
+    private ?Professeur $professeur = null;
+
+    #[ORM\ManyToOne(inversedBy: 'cours')]
+    private ?TypeInstrument $typeInstrument = null;
+
     public function __construct()
     {
         $this->inscriptions = new ArrayCollection();
@@ -102,6 +108,30 @@ class Cours
                 $inscription->setCours(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getProfesseur(): ?Professeur
+    {
+        return $this->professeur;
+    }
+
+    public function setProfesseur(?Professeur $professeur): static
+    {
+        $this->professeur = $professeur;
+
+        return $this;
+    }
+
+    public function getTypeInstrument(): ?TypeInstrument
+    {
+        return $this->typeInstrument;
+    }
+
+    public function setTypeInstrument(?TypeInstrument $typeInstrument): static
+    {
+        $this->typeInstrument = $typeInstrument;
 
         return $this;
     }
