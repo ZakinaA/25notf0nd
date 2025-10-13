@@ -31,6 +31,7 @@ class Cours
     private Collection $inscriptions;
 
     #[ORM\ManyToOne(inversedBy: 'cours')]
+    private ?Jour $jour = null;
     private ?Type $type = null;
 
     public function __construct()
@@ -109,6 +110,14 @@ class Cours
         return $this;
     }
 
+    public function getJour(): ?Jour
+    {
+        return $this->jour;
+    }
+
+    public function setJour(?Jour $jour): static
+    {
+        $this->jour = $jour;
     public function getType(): ?Type
     {
         return $this->type;
