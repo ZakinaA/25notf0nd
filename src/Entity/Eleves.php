@@ -34,6 +34,9 @@ class Eleves
     #[ORM\OneToMany(targetEntity: Inscriptions::class, mappedBy: 'eleves')]
     private Collection $inscriptions;
 
+    #[ORM\ManyToOne(inversedBy: 'eleves')]
+    private ?Tranche $tranche = null;
+
     public function __construct()
     {
         $this->inscriptions = new ArrayCollection();
@@ -118,6 +121,18 @@ class Eleves
                 $inscription->setEleves(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTranche(): ?Tranche
+    {
+        return $this->tranche;
+    }
+
+    public function setTranche(?Tranche $tranche): static
+    {
+        $this->tranche = $tranche;
 
         return $this;
     }
