@@ -27,9 +27,23 @@ class Tranche
     #[ORM\ManyToMany(targetEntity: Type::class, inversedBy: 'tranches')]
     private Collection $type;
 
+    /**
+     * @var Collection<int, Eleves>
+     */
+    #[ORM\OneToMany(targetEntity: Eleves::class, mappedBy: 'tranche')]
+    private Collection $eleves;
+
+    /**
+     * @var Collection<int, Responsables>
+     */
+    #[ORM\OneToMany(targetEntity: Responsables::class, mappedBy: 'tranche')]
+    private Collection $responsables;
+
     public function __construct()
     {
         $this->type = new ArrayCollection();
+        $this->eleves = new ArrayCollection();
+        $this->responsables = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -81,6 +95,66 @@ class Tranche
     public function removeType(Type $type): static
     {
         $this->type->removeElement($type);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Eleves>
+     */
+    public function getEleves(): Collection
+    {
+        return $this->eleves;
+    }
+
+    public function addElefe(Eleves $elefe): static
+    {
+        if (!$this->eleves->contains($elefe)) {
+            $this->eleves->add($elefe);
+            $elefe->setTranche($this);
+        }
+
+        return $this;
+    }
+
+    public function removeElefe(Eleves $elefe): static
+    {
+        if ($this->eleves->removeElement($elefe)) {
+            // set the owning side to null (unless already changed)
+            if ($elefe->getTranche() === $this) {
+                $elefe->setTranche(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Responsables>
+     */
+    public function getResponsables(): Collection
+    {
+        return $this->responsables;
+    }
+
+    public function addResponsable(Responsables $responsable): static
+    {
+        if (!$this->responsables->contains($responsable)) {
+            $this->responsables->add($responsable);
+            $responsable->setTranche($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResponsable(Responsables $responsable): static
+    {
+        if ($this->responsables->removeElement($responsable)) {
+            // set the owning side to null (unless already changed)
+            if ($responsable->getTranche() === $this) {
+                $responsable->setTranche(null);
+            }
+        }
 
         return $this;
     }

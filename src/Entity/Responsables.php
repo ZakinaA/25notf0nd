@@ -51,6 +51,9 @@ class Responsables
     #[ORM\OneToMany(targetEntity: Eleves::class, mappedBy: 'responsables')]
     private Collection $eleves;
 
+    #[ORM\ManyToOne(inversedBy: 'responsables')]
+    private ?Tranche $tranche = null;
+
     public function __construct()
     {
         $this->eleves = new ArrayCollection();
@@ -207,6 +210,18 @@ class Responsables
                 $elefe->setResponsables(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTranche(): ?Tranche
+    {
+        return $this->tranche;
+    }
+
+    public function setTranche(?Tranche $tranche): static
+    {
+        $this->tranche = $tranche;
 
         return $this;
     }
