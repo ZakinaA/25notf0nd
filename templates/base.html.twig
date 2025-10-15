@@ -1,64 +1,28 @@
+{# templates/base.html.twig #}
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Instruments de Musique Classique{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        
-        {% block stylesheets %}
-            <style>
-                body {
-                    font-family: Arial, sans-serif;
-                    margin: 0;
-                    padding: 20px;
-                    background-color: #f4f4f4;
-                }
-                h1 {
-                    color: #333;
-                    text-align: center;
-                }
-                .instrument-list {
-                    list-style-type: none;
-                    padding: 0;
-                }
-                .instrument-list li {
-                    background-color: #fff;
-                    margin: 10px 0;
-                    padding: 15px;
-                    border-radius: 5px;
-                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-                }
-                .instrument-list li strong {
-                    color: #007bff;  /* Bleu pour les noms d'instruments */
-                }
-            </style>
-        {% endblock %}
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block title %}École de Musique : eMusic{% endblock %}</title>
+    <link rel="icon" href="{{ asset('images/note.ico') }}">
+  </head>
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}
-            <header>
-                <h1>Bienvenue sur notre site d'instruments de musique classique</h1>
-                <p>Découvrez les instruments emblématiques de la musique classique, leur histoire et leur rôle dans les orchestres.</p>
-            </header>
-            
-            <main>
-                <h2>Liste des instruments classiques populaires</h2>
-                <ul class="instrument-list">
-                    <li><strong>Violon</strong> : Un instrument à cordes frottées, connu pour sa sonorité expressive et sa présence dans les symphonies.</li>
-                    <li><strong>Piano</strong> : Instrument polyphonique à clavier, idéal pour les solos et les accompagnements complexes.</li>
-                    <li><strong>Flûte</strong> : Instrument à vent en bois, produisant des sons clairs et aigus, souvent utilisé dans les orchestres.</li>
-                    <li><strong>Trompette</strong> : Instrument à vent en cuivre, célèbre pour ses notes puissantes et ses fanfares.</li>
-                    <li><strong>Violoncelle</strong> : Instrument à cordes, plus grave que le violon, offrant une richesse harmonique dans les ensembles.</li>
-                </ul>
-            </main>
-            
-            <footer>
-                <p>&copy; 2023 Site d'instruments de musique classique. Tous droits réservés.</p>
-            </footer>
-        {% endblock %}
-    </body>
+  <body>
+    <header>
+      <h1>École de Musique : eMusic</h1>
+      <p>Former les talents d’aujourd’hui, inspirer les musiciens de demain.</p>
+    </header>
+
+    <nav>
+      <a href="{{ path('app_instrument_index') }}">Instruments</a>
+    </nav>
+
+    <main>
+      {% block body %}{% endblock %}
+    </main>
+
+    <footer>
+      <p>&copy; {{ "now"|date("Y") }} École de Musique : eMusic — Tous droits réservés.</p>
+    </footer>
+  </body>
 </html>
