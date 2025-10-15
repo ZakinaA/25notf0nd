@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Instrument index{% endblock %}
+
+{% block body %}
+    <h1>Liste instruments</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Instruments</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for instrument in instruments %}
+            <tr>
+                <td>
+                    {{ instrument.typeInstrument.libelle ?? 'Nom non disponible' }}
+                    <a href="{{ path('app_instrument_show', {'id': instrument.id}) }}">show</a>
+                    <a href="{{ path('app_instrument_edit', {'id': instrument.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_instrument_new') }}">Create new</a>
+{% endblock %}
