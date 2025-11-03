@@ -8,13 +8,63 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<!DOCTYPE html>
 
-    This friendly message is coming from:
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>École de Musique d'Ifs - Accueil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1, h2 {
+            color: #0055a5;
+        }
+        ul {
+            list-style-type: square;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>École de Musique Municipale d'Ifs</h1>
+        <p>Inscrite dans le paysage culturel de la ville d’Ifs (12 000 habitants) depuis une quarantaine d'années, l'école de musique municipale compte aujourd'hui environ 300 usagers.</p>
+
+
+    <h2>Ouverture</h2>
+    <p>Ouverte à tous — enfants, adolescents et adultes — elle a pour vocation l'apprentissage de la musique.</p>
+
+    <h2>Projet d’établissement</h2>
+    <p>Le projet de l’école de musique est axé sur les missions suivantes :</p>
     <ul>
-        <li>test</li>
-        <li>test</li>
+        <li>Formation des musiciens : instrumentale, musicale, orchestrale, ateliers, etc.</li>
+        <li>Diffusion et création : concerts, auditions.</li>
+        <li>Sensibilisation d’un large public et développement de partenariats locaux : éducation nationale, scène nationale voisine, maison des jeunes et de la culture, centres d’animation, pratiques amateurs, master class, conférences.</li>
     </ul>
+
+    <h2>Équipe et locaux</h2>
+    <p>Dotée de locaux de qualité, l’école dispose d’une équipe pédagogique de seize enseignants et propose différentes prestations d'enseignement musical.</p>
+
+    <h2>Cours et inscriptions</h2>
+    <p>L’école dispense des cours d’instruments individuels ou collectifs pour enfants, adolescents et adultes, en fonction des places disponibles. L’apprentissage est accessible à partir de 7 ans, sauf précision particulière pour certains instruments.</p>
 </div>
+
+
+</body>
+</html>
+
 {% endblock %}
