@@ -27,7 +27,7 @@ class Intervention
     private ?float $prix = null;
 
     #[ORM\Column]
-    private ?int $quotitent = null;
+    private ?int $quotient = null;
 
     #[ORM\ManyToOne(inversedBy: 'interventions')]
     private ?Professionnel $professionnel = null;
@@ -88,14 +88,14 @@ class Intervention
         return $this;
     }
 
-    public function getQuotitent(): ?int
+    public function getQuotient(): ?int
     {
-        return $this->quotitent;
+        return $this->quotient;
     }
 
-    public function setQuotitent(int $quotitent): static
+    public function setQuotient(int $quotient): static
     {
-        $this->quotitent = $quotitent;
+        $this->quotient = $quotient;
 
         return $this;
     }
