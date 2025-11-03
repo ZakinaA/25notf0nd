@@ -8,139 +8,24 @@
 
         {% block stylesheets %}
         <style>
-          /* Reset global — minimaliste et moderne */
-          * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-          }
-
-          :root {
-            --color-bg: #f5f6f7;
-            --color-text: #1b1b1b;
-            --color-primary: #3b5bdb;
-            --color-primary-dark: #2744a3;
-            --color-accent: #ffd43b;
-            --color-surface: #ffffff;
-            --radius: 12px;
-            --shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-          }
-
-          body {
-            font-family: 'Inter', 'Helvetica Neue', sans-serif;
-            color: var(--color-text);
-            background-color: var(--color-bg);
-            line-height: 1.7;
-            font-size: 16px;
-          }
-
-          /* Layout principal */
-          main {
-            max-width: 1200px;
-            margin: 3rem auto;
-            padding: 1.5rem;
-          }
-
-          /* Titres */
-          h1, h2, h3 {
-            font-weight: 700;
-            color: var(--color-primary-dark);
-            margin-bottom: 1rem;
-            letter-spacing: -0.5px;
-          }
-
-          /* Sections */
-          section {
-            background-color: var(--color-surface);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 2rem;
-            margin-bottom: 2.5rem;
-            transition: transform 0.3s ease;
-          }
-
-          section:hover {
-            transform: translateY(-4px);
-          }
-
-          /* Table */
-          table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: var(--color-surface);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-          }
-
-          th, td {
-            padding: 1rem 1.2rem;
-            text-align: left;
-            border-bottom: 1px solid #e9ecef;
-          }
-
-          th {
-            background-color: var(--color-primary);
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-size: 0.9rem;
-          }
-
-          tr:hover td {
-            background-color: #f1f3f5;
-          }
-
-          /* Liens & boutons */
-          a, button {
-            font-weight: 500;
-            border: none;
-            border-radius: var(--radius);
-            padding: 0.7rem 1.4rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
+            body {
+            display: flex;
             justify-content: center;
-            align-items: center;
-            text-decoration: none;
-          }
+            align-items: flex-start;
+            padding: 2rem 1rem;
+        }
 
-          a.btn, button {
-            background-color: var(--color-primary);
-            color: white;
-          }
-
-          a.btn:hover, button:hover {
-            background-color: var(--color-primary-dark);
-          }
-
-          a.btn--edit {
-            background-color: var(--color-accent);
-            color: #1b1b1b;
-          }
-
-          a.btn--edit:hover {
-            background-color: #f59f00;
-          }
-
-          /* Animation subtile sur hover */
-          button:hover, a:hover {
-            transform: translateY(-2px);
-          }
-
-          /* Responsive */
-          @media (max-width: 768px) {
-            table, thead, tbody, th, td, tr {
-              display: block;
-            }
-            th {
-              display: none;
-            }
-            td {
-              border-bottom: 1px solid #dee2e6;
-              padding: 0.8rem;
-            }
-          }
+        body.card {
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
         </style>
         {% endblock %}
 
