@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 <th>Instruments</th>
+                <th>Numéro de série </th>
                 <th>Marque</th>
                 <th>Couleur</th>
                 <th>Actions</th>
@@ -18,6 +19,7 @@
         {% for instrument in instruments %}
             <tr>
                 <td>{{ instrument.typeInstrument.libelle }}</td>
+                <td>{{ instrument.numSerie }}</td>
                 <td>{{ instrument.Marque.libelle }}</td>
                 <td>{{ instrument.Couleur.Nom }}</td>
                 <td>
