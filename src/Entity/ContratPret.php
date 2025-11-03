@@ -35,6 +35,9 @@ class ContratPret
     #[ORM\ManyToOne(inversedBy: 'contratPrets')]
     private ?Eleves $eleves = null;
 
+    #[ORM\Column]
+    private ?int $eleves_id = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -100,6 +103,19 @@ class ContratPret
         return $this;
     }
 
+        public function setEleves_Id(string $eleves_id): static
+    {
+        $this->eleves_id = $eleves_id;
+
+        return $this;
+    }
+
+
+        public function getEleves_Id(): ?string
+    {
+        return $this->eleves_id;
+    }
+
     public function getInstrument(): ?Instrument
     {
         return $this->instrument;
@@ -120,6 +136,18 @@ class ContratPret
     public function setEleves(?Eleves $eleves): static
     {
         $this->eleves = $eleves;
+
+        return $this;
+    }
+
+    public function getElevesId(): ?int
+    {
+        return $this->eleves_id;
+    }
+
+    public function setElevesId(int $eleves_id): static
+    {
+        $this->eleves_id = $eleves_id;
 
         return $this;
     }
