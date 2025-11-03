@@ -1,14 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des cours{% endblock %}
+{% block title %}Liste des cours de musique{% endblock %}
 
 {% block body %}
-<h1>Liste des cours</h1>
+<h1>Liste des cours de musique</h1>
 
 <table class="table">
     <thead>
         <tr>
-            <th>Id</th>
             <th>Professeur du Cours</th>
             <th>Libelle</th>
             <th>AgeMini</th>
@@ -19,7 +18,6 @@
     <tbody>
         {% for cour in cours %}
             <tr>
-                <td>{{ cour.id }}</td>
                 <td>
                     {# lien vers la page du professeur #}
                     <a href="{{ path('app_professeur_show', {'id': cour.professeur.id}) }}">
@@ -36,11 +34,11 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Pas de données trouvées.</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_cours_new') }}">Create new</a>
+    <a href="{{ path('app_cours_new') }}">Créer nouveau</a>
 {% endblock %}
