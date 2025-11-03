@@ -11,6 +11,7 @@
                 <th>Instruments</th>
                 <th>Marque</th>
                 <th>Couleur</th>
+                <th>Prêt</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                 <td>{{ instrument.typeInstrument.libelle }}</td>
                 <td>{{ instrument.Marque.libelle }}</td>
                 <td>{{ instrument.Couleur.Nom }}</td>
+                <td><a href="{{ path('app_contrat_pret_show', {'id': instrument.id}) }}"/>Contrat</td>
                 <td>
                     <a href="{{ path('app_instrument_show', {'id': instrument.id}) }}">Consulter</a>
                     <a href="{{ path('app_instrument_edit', {'id': instrument.id}) }}">Modifier</a>
