@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des cours{% endblock %}
+{% block title %}Liste des cours de musique{% endblock %}
 
 {% block body %}
 <h1>Liste des cours de musique</h1>
@@ -34,11 +34,11 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Pas de données trouvées.</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_cours_new') }}">Create new</a>
+    <a href="{{ path('app_cours_new') }}">Créer nouveau</a>
 {% endblock %}
