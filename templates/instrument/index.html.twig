@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}eMusic : Instruments{% endblock %}
+
+{% block body %}
+    <h1>Liste des instruments disponibles</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Instruments</th>
+                <th>Marque</th>
+                <th>Couleur</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for instrument in instruments %}
+            <tr>
+                <td>{{ instrument.typeInstrument.libelle }}</td>
+                <td>{{ instrument.Marque.libelle }}</td>
+                <td>{{ instrument.Couleur.Nom }}</td>
+                <td>
+                    <a href="{{ path('app_instrument_show', {'id': instrument.id}) }}">Consulter</a>
+                    <a href="{{ path('app_instrument_edit', {'id': instrument.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucune données trouvées</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('app_instrument_new') }}">Créer nouveau</a>
+{% endblock %}

@@ -1,3 +1,4 @@
+{# templates/base.html.twig #}
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,11 +29,22 @@
         </style>
         {% endblock %}
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+  <body>
+    <header>
+      <h1>École de Musique : eMusic</h1>
+      <p>Former les talents d’aujourd’hui, inspirer les musiciens de demain.</p>
+    </header>
+
+    <nav>
+      <a href="{{ path('app_instrument_index') }}">Instruments</a>
+    </nav>
+
+    <main>
+      {% block body %}{% endblock %}
+    </main>
+
+    <footer>
+      <p>&copy; {{ "now"|date("Y") }} École de Musique : eMusic — Tous droits réservés.</p>
+    </footer>
+  </body>
 </html>
