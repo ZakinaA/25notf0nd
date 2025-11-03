@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Intervention index{% endblock %}
+{% block title %}Intervention {% endblock %}
 
 {% block body %}
-    <h1>Intervention index</h1>
+    <h1>Intervention </h1>
 
     <table class="table">
         <thead>
@@ -11,9 +11,10 @@
                 <th>Instrument</th>
                 <th>DateDebut</th>
                 <th>DateFin</th>
-                <th>Professionnel</th>
                 <th>Descriptif</th>
                 <th>Prix</th>
+                <th>Quotitent</th>
+                <th>Professionnel</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -23,9 +24,10 @@
                 <td><a href="{{ path('app_intervention_show', {'id': intervention.instrument.id}) }}">{{ intervention.instrument.numSerie }}</a></td>
                 <td>{{ intervention.dateDebut ? intervention.dateDebut|date('Y-m-d') : '' }}</td>
                 <td>{{ intervention.dateFin ? intervention.dateFin|date('Y-m-d') : '' }}</td>
-                <td><a href="{{ path('app_intervention_show', {'id': intervention.professionnel.id}) }}">{{ intervention.professionnel.nom }}</a></td>
                 <td>{{ intervention.descriptif }}</td>
-                <td>{{ intervention.prix }}</td> 
+                <td>{{ intervention.prix }}</td>
+                <td>{{ intervention.quotitent }}</td>
+                <td><a href="{{ path('app_intervention_show', {'id': intervention.professionnel.id}) }}">{{ intervention.professionnel.nom }}</a></td>
                 <td>
                     <a href="{{ path('app_intervention_show', {'id': intervention.id}) }}">show</a>
                     <a href="{{ path('app_intervention_edit', {'id': intervention.id}) }}">edit</a>

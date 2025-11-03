@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ContratPret{% endblock %}
+
+{% block body %}
+    <h1>Create new ContratPret</h1>
+
+    {{ include('contrat_pret/_form.html.twig') }}
+
+    <a href="{{ path('app_contrat_pret_index') }}">back to list</a>
+{% endblock %}
