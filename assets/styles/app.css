@@ -8,13 +8,7 @@ body {
     font-family: 'Inter', sans-serif;
     color: #6c584c;
     line-height: 1.6;
-
-    /* Image de fond */
-    background-image: url('test1.jpg');
-    background-size: cover;        /* l'image couvre tout l'écran */
-    background-position: center;   /* centrage de l'image */
-    background-repeat: no-repeat;  /* pas de répétition */
-    background-attachment: fixed;  /* l'image reste fixe au scroll */
+    background-color: #fcf7d7;
 }
 
 main {
