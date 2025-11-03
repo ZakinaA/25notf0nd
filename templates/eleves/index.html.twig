@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Eleves index{% endblock %}
+
+{% block body %}
+    <h1>Eleves index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Date_naiss</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for elefe in eleves %}
+            <tr>
+                <td>{{ elefe.id }}</td>
+                <td>{{ elefe.nom }}</td>
+                <td>{{ elefe.prenom }}</td>
+                <td>{{ elefe.dateNaiss ? elefe.dateNaiss|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_eleves_show', {'id': elefe.id}) }}">show</a>
+                    <a href="{{ path('app_eleves_edit', {'id': elefe.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_eleves_new') }}">Create new</a>
+{% endblock %}
