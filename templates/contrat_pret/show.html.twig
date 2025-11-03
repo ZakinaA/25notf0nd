@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ContratPret{% endblock %}
+
+{% block body %}
+    <h1>ContratPret</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ contrat_pret.id }}</td>
+            </tr>
+            <tr>
+                <th>DateDebut</th>
+                <td>{{ contrat_pret.dateDebut ? contrat_pret.dateDebut|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateFin</th>
+                <td>{{ contrat_pret.dateFin ? contrat_pret.dateFin|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>AttestationAssurance</th>
+                <td>{{ contrat_pret.attestationAssurance }}</td>
+            </tr>
+            <tr>
+                <th>EtatDetailleDebut</th>
+                <td>{{ contrat_pret.etatDetailleDebut }}</td>
+            </tr>
+            <tr>
+                <th>EtatDetailleRetour</th>
+                <td>{{ contrat_pret.etatDetailleRetour }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_contrat_pret_index') }}">back to list</a>
+
+    <a href="{{ path('app_contrat_pret_edit', {'id': contrat_pret.id}) }}">edit</a>
+
+    {{ include('contrat_pret/_delete_form.html.twig') }}
+{% endblock %}
