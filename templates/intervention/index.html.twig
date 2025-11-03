@@ -13,9 +13,9 @@
                 <th>DateFin</th>
                 <th>Descriptif</th>
                 <th>Prix</th>
-                <th>Quotitent</th>
+                <th>Quotient</th>
                 <th>Professionnel</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -26,7 +26,7 @@
                 <td>{{ intervention.dateFin ? intervention.dateFin|date('Y-m-d') : '' }}</td>
                 <td>{{ intervention.descriptif }}</td>
                 <td>{{ intervention.prix }}</td>
-                <td>{{ intervention.quotitent }}</td>
+                <td>{{ intervention.quotient }}</td>
                 <td><a href="{{ path('app_intervention_show', {'id': intervention.professionnel.id}) }}">{{ intervention.professionnel.nom }}</a></td>
                 <td>
                     <a href="{{ path('app_intervention_show', {'id': intervention.id}) }}">show</a>
