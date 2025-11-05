@@ -19,18 +19,28 @@
             </tr>
 
             <tr>
+                <th>Date d'achat</th>
+                <td>{{ instrument.dateAchat ? instrument.dateAchat|date('d/m/Y') : '' }}</td>
+            </tr>
+            
+            <tr>
                 <th>Prix</th>
                 <td>{{ instrument.prixAchat }}</td>
             </tr>
 
             <tr>
-                <th>Classe</th>
-                <td>{{ instrument.typeInstrument.classInstru.libelle }}</td>
+                <th>Utilisation</th>
+                <td>{{ instrument.utilisation }}</td>
             </tr>
 
             <tr>
                 <th>Type</th>
                 <td>{{ instrument.typeInstrument.libelle }}</td>
+            </tr>
+            
+            <tr>
+                <th>Classe</th>
+                <td>{{ instrument.typeInstrument.classInstru.libelle }}</td>
             </tr>
 
             <tr>
@@ -42,17 +52,7 @@
                 <th>Marque</th>
                 <td>{{ instrument.Marque.libelle }}</td>
             </tr>
-
-            <tr>
-                <th>Date d'achat</th>
-                <td>{{ instrument.dateAchat ? instrument.dateAchat|date('d/m/Y') : '' }}</td>
-            </tr>
-
-            <tr>
-                <th>Utilisation</th>
-                <td>{{ instrument.utilisation }}</td>
-            </tr>
-
+            
             <tr>
                 <th>Interventions</th>
                 <td>
@@ -61,17 +61,26 @@
                             {% for intervention in instrument.interventions %}
                                 <li>
                                     {{ intervention.descriptif }}
-                                    {% if intervention.dateDebut %}
-                                        (Début : {{ intervention.dateDebut|date('d/m/Y') }})
+                                    {% if intervention.dateDebut or intervention.dateFin %}
+                                            ({{ intervention.dateDebut|date('d/m/Y') }}{% if intervention.dateFin %} - {{ intervention.dateFin|date('d/m/Y') }}{% endif %})
                                     {% endif %}
-                                    {% if intervention.dateFin %}
-                                        (Fin : {{ intervention.dateFin|date('d/m/Y') }})
-                                    {% endif %}
+
                                     {% if intervention.prix %}
                                         (Prix : {{ intervention.prix }} €)
                                     {% endif %}
+
                                     {% if intervention.quotient %}
                                         (Quotient : {{ intervention.quotient }})
+                                    {% endif %}
+
+                                    {% if intervention.professionnel %}
+                                        <br>
+                                        <strong>Professionnel :</strong>
+                                        {% set p = intervention.professionnel %}
+                                        {{ p.prenom|default('') }} {{ p.nom|default('') }}
+                                        {% if p.tel or p.mail %}
+                                            ({{ p.tel|default('') }}{% if p.mail %} - {{ p.mail }}{% endif %})
+                                        {% endif %}
                                     {% endif %}
                                 </li>
                             {% endfor %}
