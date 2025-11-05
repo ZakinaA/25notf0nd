@@ -12,6 +12,7 @@
             <th>Libelle</th>
             <th>Age Mini</th>
             <th>Age Maxi</th>
+            <th>Date du Cours</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -27,6 +28,7 @@
                 <td>{{ cour.libelle }}</td>
                 <td>{{ cour.ageMini }}</td>
                 <td>{{ cour.ageMaxi }}</td>
+                <td>{{ cour.dateCours|date('d/m/Y') }}</td>
                 <td>
                     <a href="{{ path('app_cours_show', {'id': cour.id}) }}">Voir</a> |
                     <a href="{{ path('app_cours_edit', {'id': cour.id}) }}">Modifier</a>

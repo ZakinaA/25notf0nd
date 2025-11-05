@@ -12,6 +12,10 @@
                 <td>{{ intervention.id }}</td>
             </tr>
             <tr>
+            <th>Id de l'instrument</th>
+            <td><a href="{{ path('app_instrument_show', {'id': intervention.instrument.id}) }}">{{ intervention.instrument.numSerie }}</a></td>
+            </tr>
+            <tr>
                 <th>DateDebut</th>
                 <td>{{ intervention.dateDebut ? intervention.dateDebut|date('Y-m-d') : '' }}</td>
             </tr>
