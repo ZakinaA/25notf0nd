@@ -43,8 +43,10 @@ class Cours
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTime $heureFin = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTime $dateCours = null;
+    #[ORM\Column(length: 255)]
+    private ?string $dateCours = null;
+
+
 
     public function __construct()
     {
@@ -170,16 +172,18 @@ class Cours
         return $this;
     }
 
-    public function getDateCours(): ?\DateTime
+    public function getDateCours(): ?string
     {
         return $this->dateCours;
     }
 
-    public function setDateCours(\DateTime $dateCours): static
+    public function setDateCours(string $dateCours): static
     {
         $this->dateCours = $dateCours;
 
         return $this;
     }
+
+    
 }
 

@@ -15,7 +15,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
-  max-width: 2000px;
+  max-width: 20s00px;
   margin: 0 auto;
   padding: 1rem 1.5rem;
   display: flex;
@@ -23,16 +23,51 @@ header {
   justify-content: center; /* ← changement : centre horizontalement */
   gap: 2rem; /* optionnel pour espacer logo, nav et bouton */
   text-align: center;
+
 }
 
 header .container {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+/*navbar*/
+.navbar {
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 220px;
+  background-color: var(--color-surface);
+  box-shadow: inset 2 -20px -80px -30px rgba(0,0,0,0.08); 
+  display: flex;
+  flex-direction: column;
+  padding-top: 1.5rem;
+  gap: 1rem;
+  z-index: 1000;
+}
+
+
+.navbar a {
+  color: var(--color-text);
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: black;
+}
+/*navbar1*/
+.navbar1 {
+ }
+
+
 
 /* Logo */
 header .logo {
@@ -312,24 +347,40 @@ footer {
       <h1>École de Musique : eMusic</h1>
       <p>Former les talents d’aujourd’hui, inspirer les musiciens de demain.</p>
       
-        <nav>
-          <a href="{{ path('app_accueil') }}">Accueil</a>
-        
-          <a href="{{ path('app_instrument_index') }}">Instruments</a>
-        
-          <a href="{{ path('app_eleves_index') }}">Élèves</a>
-        
-          <a href="{{ path('app_cours_index') }}">Cours</a>
-        
-          <a href="{{ path('app_intervention_index') }}">Interventions</a>
-        
-          <a href="{{ path('app_professeur_index') }}">Professeurs</a>
-
-          <a href="{{ path('app_contrat_pret_index') }}">Contrats Prêts</a>
-        </nav>
-      
     </header>
     
+          
+      <div class="navbar">
+      <div class="navbar1">
+      <a href="{{ path('app_accueil') }}"><img src="../templates/img/logo.jpg" alt="Logo" width="170" height="170"></a>
+    
+      </div>
+      <nav>
+      
+        
+          <a href="{{ path('app_accueil') }}">🏠Accueil</a>
+        <br>
+        <br>
+        
+          <a href="{{ path('app_instrument_index') }}">🎸Instruments</a>
+          
+        <br>
+        <br>
+          <a href="{{ path('app_eleves_index') }}">🧒Élèves</a>
+        <br>
+        <br>
+          <a href="{{ path('app_cours_index') }}">📖Cours</a>
+        <br>
+        <br>
+          <a href="{{ path('app_intervention_index') }}">🔧Interventions</a>
+        <br>
+        <br>
+          <a href="{{ path('app_professeur_index') }}">🧑‍🏫Professeurs</a>
+        <br>
+        <br>
+          <a href="{{ path('app_contrat_pret_index') }}">📝Contrats Prêts</a>
+        </nav>
+      </div>
     
     
     <main>
