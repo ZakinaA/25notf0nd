@@ -4,6 +4,10 @@ namespace App\Entity;
 
 use App\Repository\InscriptionsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use App\Entity\Inscriptions;
+
 
 #[ORM\Entity(repositoryClass: InscriptionsRepository::class)]
 class Inscriptions
@@ -24,6 +28,10 @@ class Inscriptions
 
     #[ORM\OneToMany(targetEntity: Paiement::class, mappedBy: 'inscriptions')]
     private Collection $paiement;
+
+    #[ORM\OneToMany(mappedBy: 'cours', targetEntity: Inscriptions::class, cascade: ['persist', 'remove'])]
+    private Collection $inscriptions;
+
 
     public function getId(): ?int
     {
@@ -53,6 +61,12 @@ class Inscriptions
 
         return $this;
     }
+
+    public function __construct()
+    {
+    $this->inscriptions = new ArrayCollection();
+    }
+
 
     public function getCours(): ?Cours
     {
@@ -92,4 +106,40 @@ class Inscriptions
 
         return $this;
     }
+
+
+
+
+        /**
+     * @return Collection|Inscriptions[]
+     */
+    public function getInscriptions(): Collection
+    {
+        return $this->inscriptions;
+    }
+
+    public function addInscription(Inscriptions $inscription): static
+    {
+        if (!$this->inscriptions->contains($inscription)) {
+            $this->inscriptions->add($inscription);
+            $inscription->setCours($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInscription(Inscriptions $inscription): static
+    {
+        if ($this->inscriptions->removeElement($inscription)) {
+            if ($inscription->getCours() === $this) {
+                $inscription->setCours(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
+
 }

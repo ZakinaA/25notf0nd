@@ -42,7 +42,40 @@
                 <td>{{ cour.heureFin|date('H:i') }}</td>
             </tr>
         </tbody>
-    </table>
+
+
+        <table class="table">
+        <br>
+            <thead>
+            <tr>
+                <th style="text-align:center; vertical-align:middle;">Élèves du cours</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align:center; vertical-align:middle;">
+                {# Remplacez 'app_eleve_show' par le nom de votre route si différent #}
+                {% if cour.inscriptions|length %}
+                    {% for inscription in cour.inscriptions %}
+                    <a href="{{ path('app_eleves_show', {'id': inscription.eleves.id}) }}">
+                        {{ inscription.eleves.nom }}
+                    </a>{% if not loop.last %}|{% endif %}
+                    {% endfor %}
+                {% else %}
+                    Aucun élève inscrit
+                {% endif %}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+
+
+
 
     <a href="{{ path('app_cours_index') }}">Retour à la liste</a>
 

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contrat Pret{% endblock %}
+{% block title %}ContratPret{% endblock %}
 
 {% block body %}
     <h1>Contrat Pret</h1>
@@ -31,8 +31,8 @@
                 
                 
                 <td>
-                    <a href="{{ path('app_contrat_pret_show', {'id': contrat_pret.id}) }}">Consulter</a>
-                    <a href="{{ path('app_contrat_pret_edit', {'id': contrat_pret.id}) }}">Modifier</a>
+                    <a href="{{ path('app_instrument_show', {'id': instrument.id}) }}">Consulter</a>
+                    <a href="{{ path('app_instrument_edit', {'id': instrument.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
