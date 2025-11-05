@@ -31,6 +31,10 @@
                 <th>EtatDetailleRetour</th>
                 <td>{{ contrat_pret.etatDetailleRetour }}</td>
             </tr>
+            <tr>
+                <th>Eleve</th>
+                <td><a href="{{ path('app_eleves_show', {'id': contrat_pret.eleves_id}) }}">{{ contrat_pret.eleves.nom }}</a></td>
+            </tr>
         </tbody>
     </table>
 
