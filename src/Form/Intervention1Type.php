@@ -19,7 +19,7 @@ class Intervention1Type extends AbstractType
             ->add('dateFin')
             ->add('descriptif')
             ->add('prix')
-            ->add('quotitent')
+            ->add('quotient')
             ->add('professionnel', EntityType::class, [
                 'class' => Professionnel::class,
                 'choice_label' => 'id',
