@@ -1,18 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Maintenance des instruments{% endblock %}
+{% block title %}Liste des interventions{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<h1>Maintenance des instruments</h1>
 
-<div class="example-wrapper">
-    <h1>Maintenance des instruments</h1>
-
-    <h2>Liste des interventions :</h2>
-        <ul>
-        </ul>
-</div>
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Instrument</th>
+            <th>Numéro de série</th>
+            <th>Prix de l'instrument</th>
+            <th>Descriptif</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Prix d'intervention</th>
+            <th>Professionnel</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>{{ intervention.instrument.typeInstrument.libelle }}</td>
+                <td>{{ intervention.instrument.numSerie }}</td>
+                <td>{{ intervention.instrument.prix }}</td>
+                <td>{{ intervention.descriptif }}</td>
+                <td>{{ intervention.dateDebut|date('d/m/Y')}}</td>
+                <td>{{ intervention.dateFin|date('d/m/Y') }}</td>
+                <td>{{ intervention.prix }}</td>
+                <td>{{ intervention.professionnel.nom }}</td>
+                <td>
+                    <a href="{{ path('app_intervention_show', {'id': intervention.id}) }}">Consulter</a>
+                    <a href="{{ path('app_intervention_edit', {'id': intervention.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">Pas d'interventions trouvées.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
