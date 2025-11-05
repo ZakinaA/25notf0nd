@@ -52,13 +52,27 @@
                 <th>Marque</th>
                 <td>{{ instrument.Marque.libelle }}</td>
             </tr>
-            
+            <tr>
+                <th>Accessoires</th>
+                <td>
+                    {% if instrument.accessoires|length > 0 %}
+                        <ul>
+                            {% for accessoire in instrument.accessoires %}
+                                <li>{{ accessoire.libelle }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        Aucun accessoire
+                    {% endif %}
+                </td>
+            </tr>
             <tr>
                 <th>Interventions</th>
                 <td>
                     {% if instrument.interventions|length > 0 %}
                         <ul>
                             {% for intervention in instrument.interventions %}
+                            <strong>Intervention :</strong>
                                 <li>
                                     {{ intervention.descriptif }}
                                     {% if intervention.dateDebut or intervention.dateFin %}
@@ -75,7 +89,7 @@
 
                                     {% if intervention.professionnel %}
                                         <br>
-                                        <strong>Professionnel :</strong>
+                                        <em>Professionnel :</em>
                                         {% set p = intervention.professionnel %}
                                         {{ p.prenom|default('') }} {{ p.nom|default('') }}
                                         {% if p.tel or p.mail %}
