@@ -12,6 +12,12 @@
                 <td>{{ cour.id }}</td>
             </tr>
             <tr>
+                <th>Professeur du Cours</th>
+                <td><a href="{{ path('app_professeur_show', {'id': cour.professeur.id}) }}">
+                        {{ cour.professeur.nom }}
+                    </a></td>
+            </tr>
+            <tr>
                 <th>Libelle</th>
                 <td>{{ cour.libelle }}</td>
             </tr>
@@ -22,6 +28,18 @@
             <tr>
                 <th>AgeMaxi</th>
                 <td>{{ cour.ageMaxi }}</td>
+            </tr>
+            <tr>
+                <th>Date du Cours</th>
+                <td>{{ cour.dateCours|date('d/m/Y') }}</td>
+            </tr>
+            <tr>
+                <th>Heure de Début</th>
+                <td>{{ cour.heureDebut|date('H:i') }}</td>
+            </tr>
+            <tr>
+                <th>Heure de Fin</th>
+                <td>{{ cour.heureFin|date('H:i') }}</td>
             </tr>
         </tbody>
     </table>

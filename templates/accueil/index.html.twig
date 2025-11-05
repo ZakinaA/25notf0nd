@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccueilController!{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
 <style>
@@ -39,32 +39,60 @@
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>École de Musique Municipale d'Ifs</h1>
-        <p>Inscrite dans le paysage culturel de la ville d’Ifs (12 000 habitants) depuis une quarantaine d'années, l'école de musique municipale compte aujourd'hui environ 300 usagers.</p>
+<div class="container">
+<h1>Accueil</h1>
+<h3>École de Musique d’Ifs – e-Music :</h3>
+<td>
+Présente dans le paysage culturel d’Ifs depuis plus de 40 ans, l’école municipale de musique e-Music accueille aujourd’hui près de 300 élèves, enfants, adolescents et adultes, désireux de découvrir ou de perfectionner leur pratique musicale.
+
+Ouverte à tous, l’école a pour mission principale la formation des musiciens à travers des cours individuels ou collectifs, des ateliers et des pratiques d’ensemble. Elle contribue également à la diffusion et à la création musicale en organisant concerts et auditions, et participe activement à la vie culturelle locale grâce à de nombreux partenariats (écoles, associations, structures culturelles).
+
+Dotée de locaux modernes et d’une équipe pédagogique de seize enseignants passionnés, e-Music offre un large éventail de formations instrumentales et théoriques, accessibles dès 7 ans, selon les instruments.</td>
 
 
-    <h2>Ouverture</h2>
-    <p>Ouverte à tous — enfants, adolescents et adultes — elle a pour vocation l'apprentissage de la musique.</p>
-
-    <h2>Projet d’établissement</h2>
-    <p>Le projet de l’école de musique est axé sur les missions suivantes :</p>
-    <ul>
-        <li>Formation des musiciens : instrumentale, musicale, orchestrale, ateliers, etc.</li>
-        <li>Diffusion et création : concerts, auditions.</li>
-        <li>Sensibilisation d’un large public et développement de partenariats locaux : éducation nationale, scène nationale voisine, maison des jeunes et de la culture, centres d’animation, pratiques amateurs, master class, conférences.</li>
-    </ul>
-
-    <h2>Équipe et locaux</h2>
-    <p>Dotée de locaux de qualité, l’école dispose d’une équipe pédagogique de seize enseignants et propose différentes prestations d'enseignement musical.</p>
-
-    <h2>Cours et inscriptions</h2>
-    <p>L’école dispense des cours d’instruments individuels ou collectifs pour enfants, adolescents et adultes, en fonction des places disponibles. L’apprentissage est accessible à partir de 7 ans, sauf précision particulière pour certains instruments.</p>
 </div>
+<br>
+<div class="container">
+    <h1>Liste des Cours</h1>
 
-
-</body>
+    <table>
+        <thead>
+            <tr>
+                
+                <th>Type de Cours</th>
+                <th>Âge Mini</th>
+                <th>Âge Maxi</th>
+                <th>Date du Cours</th>
+                <th>Heure de Début</th>
+                <th>Heure de Fin</th>
+                <th>En savoir plus</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cour in cours %}
+                <tr>
+                    
+                    <td>{{ cour.libelle }}</td>
+                    <td>{{ cour.ageMini }}</td>
+                    <td>{{ cour.ageMaxi }}</td>
+                    <td>{{ cour.dateCours|date('d/m/Y') }}</td>
+                    <td>{{ cour.heureDebut|date('H:i') }}</td>
+                    <td>{{ cour.heureFin|date('H:i') }}</td>
+                    <td>
+                        <a href="{{ path('app_cours_show', {'id': cour.id}) }}">
+                        Plus d'informations
+                        </a>
+                        
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Pas de cours trouvés.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 </html>
 
 {% endblock %}

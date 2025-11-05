@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CoursRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CoursRepository::class)]
@@ -35,6 +36,15 @@ class Cours
 
     #[ORM\ManyToOne(inversedBy: 'cours')]
     private ?TypeInstrument $typeInstrument = null;
+
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTime $heureDebut = null;
+
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTime $heureFin = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTime $dateCours = null;
 
     public function __construct()
     {
@@ -132,6 +142,42 @@ class Cours
     public function setTypeInstrument(?TypeInstrument $typeInstrument): static
     {
         $this->typeInstrument = $typeInstrument;
+
+        return $this;
+    }
+
+    public function getHeureDebut(): ?\DateTime
+    {
+        return $this->heureDebut;
+    }
+
+    public function setHeureDebut(\DateTime $heureDebut): static
+    {
+        $this->heureDebut = $heureDebut;
+
+        return $this;
+    }
+
+    public function getHeureFin(): ?\DateTime
+    {
+        return $this->heureFin;
+    }
+
+    public function setHeureFin(\DateTime $heureFin): static
+    {
+        $this->heureFin = $heureFin;
+
+        return $this;
+    }
+
+    public function getDateCours(): ?\DateTime
+    {
+        return $this->dateCours;
+    }
+
+    public function setDateCours(\DateTime $dateCours): static
+    {
+        $this->dateCours = $dateCours;
 
         return $this;
     }
