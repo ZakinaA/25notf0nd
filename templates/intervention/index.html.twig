@@ -29,8 +29,8 @@
                 <td>{{ intervention.quotient }}</td>
                 <td><a href="{{ path('app_intervention_show', {'id': intervention.professionnel.id}) }}">{{ intervention.professionnel.nom }}</a></td>
                 <td>
-                    <a href="{{ path('app_intervention_show', {'id': intervention.id}) }}">show</a>
-                    <a href="{{ path('app_intervention_edit', {'id': intervention.id}) }}">edit</a>
+                    <a href="{{ path('app_intervention_show', {'id': intervention.id}) }}">Consulter</a>
+                    <a href="{{ path('app_intervention_edit', {'id': intervention.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}

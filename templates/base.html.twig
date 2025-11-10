@@ -346,7 +346,17 @@ footer {
     <header>
       <h1>École de Musique : eMusic</h1>
       <p>Former les talents d’aujourd’hui, inspirer les musiciens de demain.</p>
-      
+      <div>
+        {% if app.user %}
+    Vous êtes connecté en tant que :
+    {% for role in app.user.roles %}
+        {{ role }}
+        {% if not loop.last %}, {% endif %}
+    {% endfor %}
+{% else %}
+    Vous n’êtes pas connecté
+{% endif %}
+    </div>
     </header>
     
           
@@ -380,6 +390,8 @@ footer {
         <br>
           <a href="{{ path('app_contrat_pret_index') }}">📝Contrats Prêts</a>
         </nav>
+        <br>
+          <a href="{{ path('app_login') }}">✅Connexion</a>
       </div>
     
     
@@ -402,8 +414,10 @@ footer {
       <a href="#" aria-label="Facebook">Facebook</a>
       <a href="#" aria-label="Twitter">Twitter</a>
       <a href="#" aria-label="LinkedIn">LinkedIn</a>
+      
     </div>
     </div>
+    
 
   </div>
 </footer>

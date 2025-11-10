@@ -23,8 +23,8 @@
                 <td>{{ elefe.prenom }}</td>
                 <td>{{ elefe.dateNaiss ? elefe.dateNaiss|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_eleves_show', {'id': elefe.id}) }}">show</a>
-                    <a href="{{ path('app_eleves_edit', {'id': elefe.id}) }}">edit</a>
+                    <a href="{{ path('app_eleves_show', {'id': elefe.id}) }}">Consulter</a>
+                    <a href="{{ path('app_eleves_edit', {'id': elefe.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}

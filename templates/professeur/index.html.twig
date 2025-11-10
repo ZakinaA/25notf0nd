@@ -33,8 +33,8 @@
                 <td>{{ professeur.tel }}</td>
                 <td>{{ professeur.mail }}</td>
                 <td>
-                    <a href="{{ path('app_professeur_show', {'id': professeur.id}) }}">show</a>
-                    <a href="{{ path('app_professeur_edit', {'id': professeur.id}) }}">edit</a>
+                    <a href="{{ path('app_professeur_show', {'id': professeur.id}) }}">Consulter</a>
+                    <a href="{{ path('app_professeur_edit', {'id': professeur.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
