@@ -34,7 +34,12 @@
                 <td>{{ professeur.mail }}</td>
                 <td>
                     <a href="{{ path('app_professeur_show', {'id': professeur.id}) }}">Consulter</a>
-                    <a href="{{ path('app_professeur_edit', {'id': professeur.id}) }}">Modifier</a>
+
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('app_professeur_edit', {'id': professeur.id}) }}">Modifier</a>                
+                    {% else %}
+                    {% endif %}
+                    
                 </td>
             </tr>
         {% else %}

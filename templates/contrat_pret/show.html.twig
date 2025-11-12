@@ -38,9 +38,13 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_contrat_pret_index') }}">back to list</a>
-
-    <a href="{{ path('app_contrat_pret_edit', {'id': contrat_pret.id}) }}">edit</a>
-
+    <a href="{{ path('app_contrat_pret_index') }}">Revenir à la Liste</a>
+    
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('app_contrat_pret_edit', {'id': contrat_pret.id}) }}">Modifier</a>
     {{ include('contrat_pret/_delete_form.html.twig') }}
+    {% else %}
+    {% endif %}
+
+    
 {% endblock %}
