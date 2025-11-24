@@ -391,11 +391,11 @@ footer {
         <br>
           <a href="{{ path('app_contrat_pret_index') }}">📝Contrats Prêts</a>
         </nav>
-        <br>
+        
           <a href="{{ path('app_login') }}">✅Connexion</a>
         {% if is_granted('ROLE_ADMIN') %}
           <a href="{{ path('app_user_index') }}">Gestion Utilisateurs</a>
-          {% else %}
+          {% else  %}
           {% endif %}
       </div>
     
