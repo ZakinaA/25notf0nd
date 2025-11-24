@@ -24,7 +24,12 @@
                 <td>{{ elefe.dateNaiss ? elefe.dateNaiss|date('Y-m-d') : '' }}</td>
                 <td>
                     <a href="{{ path('app_eleves_show', {'id': elefe.id}) }}">Consulter</a>
-                    <a href="{{ path('app_eleves_edit', {'id': elefe.id}) }}">Modifier</a>
+                    
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('app_eleves_edit', {'id': elefe.id}) }}">Modifier</a>                    
+                    {% else %}
+                    {% endif %}
+                    
                 </td>
             </tr>
         {% else %}

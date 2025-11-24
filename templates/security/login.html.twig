@@ -31,9 +31,13 @@
     </a>
     <br>
     <br>
-    <p>Créer un Compte :</p>
+    {% if is_granted('ROLE_ADMIN') %}
+                    <p>Créer un Compte :</p>
     <a href="{{ path('app_register') }}" class="btn btn-lg btn-danger">
     Créer un compte
-    </a>
+    </a>                   
+                    {% else %}
+                    {% endif %}
+    
 </form>
 {% endblock %}

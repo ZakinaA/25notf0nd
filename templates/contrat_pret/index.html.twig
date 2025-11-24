@@ -32,7 +32,11 @@
                 
                 <td>
                     <a href="{{ path('app_contrat_pret_show', {'id': contrat_pret.id}) }}">Consulter</a>
+                    {% if is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('app_contrat_pret_edit', {'id': contrat_pret.id}) }}">Modifier</a>
+                    {% else %}
+                    {% endif %}
+                    
                 </td>
             </tr>
         {% else %}
