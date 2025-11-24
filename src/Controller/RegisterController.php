@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User; // L'entité représentant ton utilisateur
-use App\Form\RegistrationFormType; // La classe qui définit la structure de ton formulaire
+use App\Form\RegisterFormType; // La classe qui définit la structure de ton formulaire
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,13 +22,13 @@ final class RegisterController extends AbstractController
         // 1. Création d'une nouvelle instance de l'entité User
         $user = new User();
 
-        // 2. Création du formulaire en utilisant la classe RegistrationFormType
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        // 2. Création du formulaire en utilisant la classe RegisterFormType
+        $form = $this->createForm(RegisterFormType::class, $user);
         
         // 3. Traitement de la requête : lie les données POST/formulaire à l'objet $form
         $form->handleRequest($request);
 
-        // 4. Vérification de la soumission et de la validité (grâce aux contraintes dans RegistrationFormType)
+        // 4. Vérification de la soumission et de la validité (grâce aux contraintes dans RegisterFormType)
         if ($form->isSubmitted() && $form->isValid()) {
             
             // --- HACHAGE SÉCURISÉ DU MOT DE PASSE (CRITIQUE !) ---
@@ -54,7 +54,7 @@ final class RegisterController extends AbstractController
         // 7. Affichage du formulaire dans la vue
         return $this->render('register/index.html.twig', [
             // On passe l'objet form créé à la vue Twig
-            'registrationForm' => $form->createView(),
+            'RegisterForm' => $form->createView(),
         ]);
     }
 }
