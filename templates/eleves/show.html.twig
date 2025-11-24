@@ -25,6 +25,32 @@
             </tr>
         </tbody>
     </table>
+    <br>
+    <table>
+        <tr>
+            <th style="text-align:center; vertical-align:middle;">Cours Inscrits</th>
+        </tr>
+    <tr>
+            <td style="text-align:center; vertical-align:middle;">
+            {% if elefe.cours is defined and elefe.cours|length %}
+                {% for cour in elefe.cours %}
+                <a href="{{ path('app_cours_show', {'id': cour.id}) }}">{{ cour.libelle }}</a>{% if not loop.last %} | {% endif %}
+                {% endfor %}
+            {% elseif elefe.inscriptions is defined and elefe.inscriptions|length %}
+                {% for insc in elefe.inscriptions %}
+                {% if insc.cours is defined %}
+                    <a href="{{ path('app_cours_show', {'id': insc.cours.id}) }}">{{ insc.cours.libelle }}</a>
+                {% elseif insc.cour is defined %}
+                    <a href="{{ path('app_cours_show', {'id': insc.cour.id}) }}">{{ insc.cour.libelle }}</a>
+                {% endif %}
+                {% if not loop.last %} | {% endif %}
+                {% endfor %}
+            {% else %}
+                Aucun cours
+            {% endif %}
+            </td>
+        </tr>
+    </table>
 
     <a href="{{ path('app_eleves_index') }}">Revenir à la Liste</a>
     {% if is_granted('ROLE_ADMIN')or is_granted('ROLE_GESTION') %}
