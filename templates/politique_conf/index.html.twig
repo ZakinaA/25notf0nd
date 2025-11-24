@@ -1,0 +1,153 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Politique de confidentialité{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Politique de confidentialité – eMusic</h1>
+
+<p><strong>Dernière mise à jour :</strong>
+    {% if lastModified %}
+        {{ lastModified|date('d/m/Y à H:i', 'Europe/Paris') }}
+    {% else %}
+        (Date inconnue)
+    {% endif %}
+</p>
+<br>
+<p>
+    Chez <strong>eMusic</strong>, la protection de vos données personnelles est une priorité.
+    Cette page explique comment nous collectons, utilisons et protégeons les informations que vous nous confiez lorsque vous utilisez nos services, notre site internet ou nos formulaires d’inscription.
+</p> 
+
+<br>
+<h2>1. Responsable du traitement</h2>
+
+Le responsable du traitement des données est : <br><br>
+Directrice: Madame Claire Dupont<br>
+Adresse école: 12, rue des Innovateurs 7501 Paris - France<br>
+Courriel:<a href="mailto:dpo@esnp.fr">dpo@esnp.fr</a>
+
+<h2>2. Données collectées</h2>
+
+<p>
+Dans le cadre de nos activités, nous pouvons être amenés à collecter différentes catégories de données personnelles :
+</p>
+
+<ul>
+  <li>
+    <strong>Informations d’identification :</strong>
+    <ul>
+      <li>Nom</li>
+      <li>Prénom</li>
+      <li>Date de naissance</li>
+    </ul>
+  </li>
+
+  <li>
+    <strong>Coordonnées :</strong>
+    <ul>
+      <li>Adresse postale</li>
+      <li>Numéro de téléphone</li>
+      <li>Adresse e-mail</li>
+    </ul>
+  </li>
+
+  <li>
+    <strong>Informations liées à la scolarité :</strong>
+    <ul>
+      <li>Instrument pratiqué</li>
+      <li>Cours suivis</li>
+      <li>Niveau musical</li>
+    </ul>
+  </li>
+
+  <li>
+    <strong>Données de connexion :</strong>
+    <ul>
+      <li>Adresse IP</li>
+      <li>Type et version du navigateur</li>
+      <li>Logs techniques (à des fins de sécurité et de statistiques)</li>
+    </ul>
+  </li>
+</ul>
+
+
+<h2>3. Finalités du traitement</h2>
+
+<p>Vos données personnelles sont utilisées pour les finalités suivantes :</p>
+<ul>
+  <li>La gestion des inscriptions et du suivi pédagogique</li>
+  <li>La communication interne (informations, événements, rappels de cours)</li>
+  <li>La facturation et la comptabilité</li>
+  <li>L’envoi d’informations sur les activités de l’école (concerts, stages, newsletters)</li>
+  <li>Le respect de nos obligations légales (assurances, sécurité, archives administratives)</li>
+</ul>
+
+<h2>4. Base légale du traitement</h2>
+
+<p>Les traitements de vos données reposent sur les bases légales suivantes :</p>
+<ul>
+  <li><strong>Exécution d’un contrat :</strong> inscription à l’école</li>
+  <li><strong>Obligation légale :</strong> facturation, assurance</li>
+  <li><strong>Consentement :</strong> abonnement à la newsletter, utilisation de photos d’élèves</li>
+  <li><strong>Intérêt légitime :</strong> amélioration des services, statistiques internes</li>
+</ul>
+
+<h2>5. Durée de conservation</h2>
+
+<p>Les durées de conservation des données sont définies comme suit :</p>
+<ul>
+  <li><strong>Données administratives :</strong> pendant la durée de votre inscription et jusqu’à 3 ans après la fin de votre relation avec l’école</li>
+  <li><strong>Données comptables :</strong> 10 ans, conformément à la législation française</li>
+  <li><strong>Données liées au consentement (ex. photos) :</strong> jusqu’au retrait du consentement</li>
+</ul>
+
+<h2>6. Partage des données</h2>
+
+<p>Nous ne vendons <strong>jamais</strong> vos données personnelles.</p>
+<p>Elles peuvent être transmises uniquement à :</p>
+<ul>
+  <li>Nos prestataires techniques (hébergement, gestion des paiements, messagerie)</li>
+  <li>Les autorités administratives compétentes (mairie, préfecture, assurances, organismes de tutelle)</li>
+</ul>
+
+<h2>7. Vos droits</h2>
+
+<p>Conformément au RGPD et à la loi Informatique et Libertés, vous disposez des droits suivants :</p>
+<ul>
+  <li>Droit d’accès, de rectification et d’effacement de vos données</li>
+  <li>Droit de limitation ou d’opposition au traitement</li>
+  <li>Droit à la portabilité de vos données</li>
+  <li>Droit de retrait de votre consentement à tout moment</li>
+</ul>
+
+<p>
+Pour exercer vos droits, contactez :
+<br>
+<strong>Délégué à la Protection des Données</strong><br>
+<a href="mailto:dpo@esnp.fr">dpo@esnp.fr</a><br>
+ou adressez un courrier à :<br>
+12, rue des Innovateurs – 75011 Paris
+</p>
+
+<p>
+Vous pouvez également introduire une réclamation auprès de la
+<a href="https://www.cnil.fr" target="_blank" rel="noopener">CNIL</a>.
+</p>
+
+<h2>8. Sécurité</h2>
+
+<p>
+Nous mettons en œuvre des mesures techniques et organisationnelles appropriées
+afin de protéger vos données contre toute perte, altération, accès non autorisé ou divulgation.
+Ces mesures incluent notamment des systèmes de chiffrement, des contrôles d’accès
+et des procédures internes de sensibilisation du personnel.
+</p>
+
+</div>
+{% endblock %}
