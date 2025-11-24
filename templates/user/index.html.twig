@@ -4,7 +4,7 @@
 
 {% block body %}
 
-{% if is_granted('ROLE_ADMIN') %} {# Vérifie que l'utilisateur est admin #}
+
 
     <h1>User index</h1>
 
@@ -39,9 +39,5 @@
     </table>
 
     <a href="{{ path('app_user_new') }}">Create new</a>
-
-{% else %}
-    <p>Vous n'avez pas le droit d'accéder à cette page.</p>
-{% endif %}
 
 {% endblock %}
