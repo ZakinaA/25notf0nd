@@ -11,7 +11,6 @@
                 <th>Instruments</th>
                 <th>Numéro de série</th>
                 <th>Date d'achat</th>
-                <th>Prix d'achat</th>
                 <th>Utilisation</th>
                 <th>Marque</th>
                 <th>Couleur</th>
@@ -25,7 +24,6 @@
                 <td>{{ instrument.typeInstrument.libelle }}</td>
                 <td>{{ instrument.numSerie }}</td>
                 <td>{{ instrument.dateAchat ? instrument.dateAchat|date('d/m/Y') : '' }} </td>
-                <td>{{ instrument.prixAchat }} €</td>
                 <td>{{ instrument.utilisation }}</td>
                 <td>{{ instrument.Marque.libelle }}</td>
                 <td>{{ instrument.Couleur.Nom }}</td>
