@@ -1,50 +1,51 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Intervention {% endblock %}
+        {% block body %}
+            <h1>Intervention </h1>
 
-{% block body %}
-    <h1>Intervention </h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Instrument</th>
+                        <th>DateDebut</th>
+                        <th>DateFin</th>
+                        <th>Descriptif</th>
+                        <th>Prix</th>
+                        <th>Quotient</th>
+                        <th>Professionnel</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for intervention in interventions %}
+                    <tr>
+                        <td><a href="{{ path('app_instrument_show', {'id': intervention.instrument.id}) }}">{{ intervention.instrument.numSerie }}</a></td>
+                        <td>{{ intervention.dateDebut ? intervention.dateDebut|date('Y-m-d') : '' }}</td>
+                        <td>{{ intervention.dateFin ? intervention.dateFin|date('Y-m-d') : '' }}</td>
+                        <td>{{ intervention.descriptif }}</td>
+                        <td>{{ intervention.prix }}</td>
+                        <td>{{ intervention.quotient }}</td>
+                        <td><a href="{{ path('app_intervention_show', {'id': intervention.professionnel.id}) }}">{{ intervention.professionnel.nom }}</a></td>
+                        <td>
+                            <a href="{{ path('app_intervention_show', {'id': intervention.id}) }}">Consulter</a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Instrument</th>
-                <th>DateDebut</th>
-                <th>DateFin</th>
-                <th>Descriptif</th>
-                <th>Prix</th>
-                <th>Quotient</th>
-                <th>Professionnel</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for intervention in interventions %}
-            <tr>
-                <td><a href="{{ path('app_instrument_show', {'id': intervention.instrument.id}) }}">{{ intervention.instrument.numSerie }}</a></td>
-                <td>{{ intervention.dateDebut ? intervention.dateDebut|date('Y-m-d') : '' }}</td>
-                <td>{{ intervention.dateFin ? intervention.dateFin|date('Y-m-d') : '' }}</td>
-                <td>{{ intervention.descriptif }}</td>
-                <td>{{ intervention.prix }}</td>
-                <td>{{ intervention.quotient }}</td>
-                <td><a href="{{ path('app_intervention_show', {'id': intervention.professionnel.id}) }}">{{ intervention.professionnel.nom }}</a></td>
-                <td>
-                    <a href="{{ path('app_intervention_show', {'id': intervention.id}) }}">Consulter</a>
+                            {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('app_intervention_edit', {'id': intervention.id}) }}">Modifier</a>                    
+                            {% else %}
+                            {% endif %}
+                            
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
 
-                    {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('app_intervention_edit', {'id': intervention.id}) }}">Modifier</a>                    
-                    {% else %}
-                    {% endif %}
-                    
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <a href="{{ path('app_intervention_new') }}">Create new</a>
 
-    <a href="{{ path('app_intervention_new') }}">Create new</a>
 {% endblock %}
