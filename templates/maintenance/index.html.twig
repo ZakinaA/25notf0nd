@@ -32,7 +32,7 @@
                 <td>
                     <a href="{{ path('app_intervention_show', {'id': intervention.id}) }}">Consulter</a>
                     
-                    {% if is_granted('ROLE_ADMIN') %}
+                    {% if is_granted('ROLE_ADMIN')or is_granted('ROLE_GESTION') %}
                     <a href="{{ path('app_intervention_edit', {'id': intervention.id}) }}">Modifier</a>                   
                     {% else %}
                     {% endif %}
