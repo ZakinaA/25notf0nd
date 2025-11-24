@@ -48,7 +48,7 @@ final class RegisterController extends AbstractController
             $this->addFlash('success', 'Votre compte a été créé avec succès ! Vous pouvez maintenant vous connecter.');
 
             // 6. Redirection vers la page de connexion (assurez-vous que 'app_signin' est votre route de connexion)
-            return $this->redirectToRoute('app_signin'); 
+            return $this->redirectToRoute('app_login'); 
         }
 
         // 7. Affichage du formulaire dans la vue

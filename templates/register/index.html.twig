@@ -66,6 +66,21 @@
                         </div>
                     </div>
 
+                    {# Case à cocher "conditions" #}
+                    <div class="flex items-center space-x-2">
+                        {{ form_widget(registrationForm.agreeTerms, {
+                            'attr': {
+                                'class': 'w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500'
+                            }
+                        }) }}
+                        <label for="{{ registrationForm.agreeTerms.vars.id }}" class="text-sm text-gray-700">
+                            J'accepte les <a href="{{ path('app_conditions') }}" target="_blank" class="text-blue-600 hover:text-blue-700">conditions d'utilisation</a>
+                        </label>
+                    </div>
+                    <div class="text-red-500 text-sm">
+                        {{ form_errors(registrationForm.agreeTerms) }}
+                    </div>
+
                     {# Bouton de soumission #}
                     <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold py-3 rounded-lg hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transform transition duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-md">
                         S'inscrire
@@ -84,11 +99,6 @@
                 </div>
             </div>
         </div>
-
-        {# Footer discret #}
-        <p class="text-center text-xs text-gray-500 mt-6">
-            En vous inscrivant, vous acceptez nos conditions d'utilisation
-        </p>
     </div>
 </div>
 {% endblock %}

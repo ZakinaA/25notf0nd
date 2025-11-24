@@ -1,0 +1,139 @@
+{# templates/conditions/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Conditions d'utilisation{% endblock %}
+
+{% block body %}
+
+{# Table des matières à droite, numéros directement #}
+    <aside class="lg:w-64 lg:sticky lg:top-20 bg-white p-4 rounded-xl shadow-md h-fit hidden lg:block">
+        <h1 class="text-xl font-semibold text-gray-800 mb-4">Table des matières</h1>
+            {% for i, section in [
+                {'id':'introduction','title':'Introduction'},
+                {'id':'compte','title':'Compte utilisateur'},
+                {'id':'donnees','title':'Collecte et utilisation des données'},
+                {'id':'propriete','title':'Propriété intellectuelle'},
+                {'id':'responsabilites','title':'Responsabilités et limites'},
+                {'id':'paiement','title':'Paiement et abonnements'},
+                {'id':'modifications','title':'Modifications des conditions'},
+                {'id':'litiges','title':'Litiges et loi applicable'},
+                {'id':'contact','title':'Contact'}
+            ] %}
+                <a href="#{{ section.id }}" class="block py-2 px-3 rounded-md hover:bg-blue-50 hover:text-blue-700 transition duration-150 flex items-center">
+                    <span class="font-bold text-blue-600 mr-2">{{ i + 1 }}.</span>
+                    <span class="text-gray-700">{{ section.title }}</span>
+                </a>
+            {% endfor %}
+    </aside>
+
+
+<div class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">
+
+        {# Contenu principal #}
+        <main class="lg:flex-1 bg-white shadow-md rounded-2xl p-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center lg:text-left">Conditions d'utilisation</h1>
+
+            {# 1. Introduction #}
+            <section id="introduction" class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-2">1. Introduction</h2>
+                <p class="text-gray-600 leading-relaxed mb-2">
+                    Bienvenue sur notre site. En utilisant nos services, vous acceptez ces conditions d'utilisation.
+                </p>
+                <p class="text-gray-600 leading-relaxed">
+                    Si vous n'acceptez pas ces conditions, veuillez ne pas créer de compte ni utiliser nos services.
+                </p>
+            </section>
+
+            {# 2. Compte utilisateur #}
+            <section id="compte" class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-2">2. Compte utilisateur</h2>
+                <p class="text-gray-600 leading-relaxed mb-2">
+                    Vous êtes responsable de la confidentialité de vos identifiants et de toute activité effectuée via votre compte.
+                </p>
+                <p class="text-gray-600 leading-relaxed">
+                    Vous devez fournir des informations exactes et les mettre à jour si nécessaire.
+                </p>
+            </section>
+
+            {# 3. Collecte et utilisation des données #}
+            <section id="donnees" class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-2">3. Collecte et utilisation des données</h2>
+                <p class="text-gray-600 leading-relaxed mb-2">
+                    Nous collectons certaines données personnelles pour fournir nos services, telles que votre email et mot de passe.
+                </p>
+                <p class="text-gray-600 leading-relaxed mb-2">
+                    Les données sont traitées conformément à notre politique de confidentialité et ne seront pas partagées sans votre consentement.
+                </p>
+                <p class="text-gray-600 leading-relaxed">
+                    Nous utilisons également des cookies pour améliorer l'expérience utilisateur.
+                </p>
+            </section>
+
+            {# 4. Propriété intellectuelle #}
+            <section id="propriete" class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-2">4. Propriété intellectuelle</h2>
+                <p class="text-gray-600 leading-relaxed mb-2">
+                    Tout le contenu du site (textes, images, vidéos, logos, logiciels) est protégé par des droits de propriété intellectuelle.
+                </p>
+                <p class="text-gray-600 leading-relaxed">
+                    Toute reproduction ou utilisation non autorisée est interdite.
+                </p>
+            </section>
+
+            {# 5. Responsabilités et limites #}
+            <section id="responsabilites" class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-2">5. Responsabilités et limites</h2>
+                <p class="text-gray-600 leading-relaxed mb-2">
+                    Nous ne garantissons pas que le site sera exempt d'erreurs ou interruptions. Vous utilisez le site à vos risques.
+                </p>
+                <p class="text-gray-600 leading-relaxed">
+                    Notre responsabilité ne saurait être engagée pour des dommages directs ou indirects.
+                </p>
+            </section>
+
+            {# 6. Paiement et abonnements #}
+            <section id="paiement" class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-2">6. Paiement et abonnements</h2>
+                <p class="text-gray-600 leading-relaxed mb-2">
+                    Certains services peuvent être payants. Les tarifs et conditions sont clairement indiqués.
+                </p>
+                <p class="text-gray-600 leading-relaxed">
+                    Aucun remboursement ne sera effectué sauf disposition contraire ou erreur manifeste.
+                </p>
+            </section>
+
+            {# 7. Modifications des conditions #}
+            <section id="modifications" class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-2">7. Modifications des conditions</h2>
+                <p class="text-gray-600 leading-relaxed mb-2">
+                    Nous pouvons mettre à jour ces conditions à tout moment. Les utilisateurs seront informés en cas de modifications importantes.
+                </p>
+                <p class="text-gray-600 leading-relaxed">
+                    L'utilisation continue après modification constitue une acceptation tacite des nouvelles conditions.
+                </p>
+            </section>
+
+            {# 8. Litiges et loi applicable #}
+            <section id="litiges" class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-2">8. Litiges et loi applicable</h2>
+                <p class="text-gray-600 leading-relaxed mb-2">
+                    Ces conditions sont régies par la loi française. Tout litige sera soumis aux tribunaux compétents.
+                </p>
+            </section>
+
+            {# 9. Contact #}
+            <section id="contact" class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-2">9. Contact</h2>
+                <p class="text-gray-600 leading-relaxed">
+                    Pour toute question, contactez-nous par email à <a href="mailto:support@emusic.com" class="text-blue-600 hover:underline">support@emusic.com</a>.
+                </p>
+            </section>
+
+            <p class="text-gray-500 text-sm mt-6 text-center lg:text-left">
+                Dernière mise à jour : {{ "now"|date("d/m/Y") }}
+            </p>
+        </main>
+    </div>
+</div>
+{% endblock %}
