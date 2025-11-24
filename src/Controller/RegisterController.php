@@ -38,7 +38,7 @@ final class RegisterController extends AbstractController
                 $form->get('plainPassword')->getData()
             );
             $user->setPassword($hashedPassword);
-            $user->setRoles(['ROLE_USER']); // Attribution d'un rôle par défaut
+            $user->setRoles(['ROLE_ADHERENT']); // Attribution d'un rôle par défaut
 
             // 5. Enregistrement de l'utilisateur en base de données
             $entityManager->persist($user);

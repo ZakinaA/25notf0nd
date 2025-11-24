@@ -408,25 +408,42 @@ footer {
         <br>
           <a href="{{ path('app_cours_index') }}">📖Cours</a>
         <br>
-        <br>
+        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GESTION') %}
+          <br>
           <a href="{{ path('app_intervention_index') }}">🔧Interventions</a>
         <br>
+          {% else  %}
+          
+          {% endif %}
+        
         <br>
           <a href="{{ path('app_professeur_index') }}">🧑‍🏫Professeurs</a>
         <br>
-        <br>
+        {% if is_granted('ROLE_ADMIN')or is_granted('ROLE_GESTION') %}
+          <br>
           <a href="{{ path('app_contrat_pret_index') }}">📝Contrats Prêts</a>
+        <br>
+          {% else  %}
+          
+          {% endif %}
+        
         </nav>
         
           
           
-          <a href="{{ path('app_register') }}">📝Inscription</a>
+          
+        {% if is_granted('ROLE_ADMIN')or is_granted('ROLE_GESTION') or is_granted('ROLE_ADHERENT') %}
+          
+          {% else  %}
+          <a href="{{ path('app_register') }}">✍️Inscription</a>
+          {% endif %}
+          
         {% if is_granted('ROLE_ADMIN') %}
-          <a href="{{ path('app_user_index') }}">Gestion Utilisateurs</a>
+          <a href="{{ path('app_user_index') }}">🧑‍🤝‍🧑Gestion Utilisateurs</a>
           {% else  %}
           {% endif %}
         {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_ADHERENT') or is_granted('ROLE_GESTION') %}
-          <a href="{{ path('app_compte') }}">Mon compte</a>
+          <a href="{{ path('app_compte') }}">👤Mon compte</a>
           {% else  %}
           <a href="{{ path('app_login') }}">✅Connexion</a>
           {% endif %}
