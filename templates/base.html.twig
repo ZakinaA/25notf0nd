@@ -408,34 +408,28 @@ footer {
         <br>
           <a href="{{ path('app_cours_index') }}">📖Cours</a>
         <br>
-        
-        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GESTION') %}
         <br>
           <a href="{{ path('app_intervention_index') }}">🔧Interventions</a>
-          <br>
-        
-          {% else  %}
-          {% endif %}
-          
+        <br>
         <br>
           <a href="{{ path('app_professeur_index') }}">🧑‍🏫Professeurs</a>
         <br>
-
-                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GESTION')%}
         <br>
           <a href="{{ path('app_contrat_pret_index') }}">📝Contrats Prêts</a>
-          <br>
-        
-          {% else  %}
-          {% endif %}
-
         </nav>
         
-          <a href="{{ path('app_login') }}">✅Connexion</a>
+          
         {% if is_granted('ROLE_ADMIN') %}
           <a href="{{ path('app_user_index') }}">Gestion Utilisateurs</a>
           {% else  %}
           {% endif %}
+        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_ADHERENT') or is_granted('ROLE_GESTION') %}
+          <a href="{{ path('app_compte') }}">Mon compte</a>
+          {% else  %}
+          <a href="{{ path('app_login') }}">✅Connexion</a>
+          {% endif %}
+          
+
       </div>
     
     
@@ -464,16 +458,16 @@ footer {
       </ul>
     </div>
 
-   <!-- Navigation rapide -->
+    <!-- Navigation rapide -->
     <div class="footer-nav">
       <div class="footer-social">
       <h3>Suivez-nous</h3>
       <a href="https://www.youtube.com/watch?v=u4ecB57jFhI&list=RDu4ecB57jFhI&start_radio=1" aria-label="Facebook">Facebook</a>
       <a href="https://x.com/Doigby" aria-label="Twitter">Twitter</a>
       <a href="https://www.youtube.com/watch?v=7xtagPvAQrY" aria-label="LinkedIn">LinkedIn</a>
-        </div>
-        </div>
-
+      
+    </div>
+    </div>
   </div>
 </footer>
   </body>
