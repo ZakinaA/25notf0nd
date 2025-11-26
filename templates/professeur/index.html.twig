@@ -10,11 +10,14 @@
             <tr>
                 <th>Nom</th>
                 <th>Prenom</th>
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_ADHERENT') %}
                 <th>NumRue</th>
                 <th>Rue</th>
                 <th>Copos</th>
                 <th>Ville</th>
                 <th>Tel</th>
+                {% else %}
+                {% endif %}
                 <th>Mail</th>
                 <th>actions</th>
             </tr>
@@ -24,11 +27,14 @@
             <tr>
                 <td>{{ professeur.nom }}</td>
                 <td>{{ professeur.prenom }}</td>
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_ADHERENT') %}
                 <td>{{ professeur.numRue }}</td>
                 <td>{{ professeur.rue }}</td>
                 <td>{{ professeur.copos }}</td>
                 <td>{{ professeur.ville }}</td>
                 <td>{{ professeur.tel }}</td>
+                {% else %}
+                {% endif %}
                 <td>{{ professeur.mail }}</td>
                 <td>
                     <a href="{{ path('app_professeur_show', {'id': professeur.id}) }}">Consulter</a>
