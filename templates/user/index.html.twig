@@ -11,18 +11,33 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
                 <th>Email</th>
                 <th>Roles</th>
-                <th>Mot de passe</th>
+
                 <th>actions</th>
+                
             </tr>
         </thead>
         <tbody>
         {% for user in users %}
             <tr>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.nom }}</td>
                 <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
+                {% set roleLabels = {
+                'ROLE_ADMIN': 'Administrateur',
+                'ROLE_ADHERENT': 'Adherent',
+                'ROLE_GESTION': 'Gestionnaire'
+            } %}
+                <td>
+                    {% for role in user.roles %}
+                        {{ roleLabels[role] ?? role }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+                
+        
                 <td>
                     <a href="{{ path('app_user_show', {'id': user.id}) }}">Consulter</a>
                     <a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>

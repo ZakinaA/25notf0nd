@@ -375,10 +375,15 @@ footer {
       <p>Former les talents d’aujourd’hui, inspirer les musiciens de demain.</p>
       <div>
         {% if app.user %}
-    Vous êtes connecté en tant que :
+        <td>Votre role est :</td>
+    {% set roleLabels = {
+        'ROLE_ADMIN': 'Administrateur',
+        'ROLE_ADHERENT': 'Adhérent',
+        'ROLE_GESTION': 'Gestionnaire'
+    } %}
+    
     {% for role in app.user.roles %}
-        {{ role }}
-        {% if not loop.last %}, {% endif %}
+        {{ roleLabels[role] ?? role }}{% if not loop.last %}, {% endif %}
     {% endfor %}
 {% else %}
     Vous n’êtes pas connecté
