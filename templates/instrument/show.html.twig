@@ -66,48 +66,36 @@
                     {% endif %}
                 </td>
             </tr>
-            <tr>
-                <th>Interventions</th>
-                <td>
-                    {% if instrument.interventions|length > 0 %}
-                        <ul>
-                            {% for intervention in instrument.interventions %}
-                            <strong>Intervention :</strong>
-                                <li>
-                                    {{ intervention.descriptif }}
-                                    {% if intervention.dateDebut or intervention.dateFin %}
-                                            ({{ intervention.dateDebut|date('d/m/Y') }}{% if intervention.dateFin %} - {{ intervention.dateFin|date('d/m/Y') }}{% endif %})
-                                    {% endif %}
-
-                                    {% if intervention.prix %}
-                                        (Prix : {{ intervention.prix }} €)
-                                    {% endif %}
-
-                                    {% if intervention.quotient %}
-                                        (Quotient : {{ intervention.quotient }})
-                                    {% endif %}
-
-                                    {% if intervention.professionnel %}
-                                        <br>
-                                        <em>Professionnel :</em>
-                                        {% set p = intervention.professionnel %}
-                                        {{ p.prenom|default('') }} {{ p.nom|default('') }}
-                                        {% if p.tel or p.mail %}
-                                            ({{ p.tel|default('') }}{% if p.mail %} - {{ p.mail }}{% endif %})
-                                        {% endif %}
-                                    {% endif %} 
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        Aucune intervention
-                    {% endif %}
-                </td>
-            </tr>
-
-            
         </tbody>
     </table>
+
+    <br>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Date Intervention</th>
+                <th>Description</th>
+                <th>Professionnel</th>
+                <th>Coût</th>
+            </tr>
+            {% if instrument.interventions is defined and instrument.interventions|length %}
+                {% for intervention in instrument.interventions %}
+                    <tr>
+                        <td>{{ intervention.dateDebut|date('d/m/Y') }}</td>
+                        <td>{{ intervention.descriptif }}</td>
+                        <td>{{ intervention.professionnel.nom }}</td>
+                        <td>{{ intervention.prix }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4">Aucune intervention</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    
 <button class="btn">
     <a href="{{ path('app_instrument_index') }}">Retour à la liste</a>
 </button>
