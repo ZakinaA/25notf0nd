@@ -8,10 +8,6 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ professeur.id }}</td>
-            </tr>
-            <tr>
                 <th>Nom</th>
                 <td>{{ professeur.nom }}</td>
             </tr>
@@ -20,15 +16,15 @@
                 <td>{{ professeur.prenom }}</td>
             </tr>
             <tr>
-                <th>NumRue</th>
+                <th>N°Rue</th>
                 <td>{{ professeur.numRue }}</td>
             </tr>
             <tr>
-                <th>Rue</th>
+                <th>Adresse</th>
                 <td>{{ professeur.rue }}</td>
             </tr>
             <tr>
-                <th>Copos</th>
+                <th>Code postal</th>
                 <td>{{ professeur.copos }}</td>
             </tr>
             <tr>
@@ -36,14 +32,39 @@
                 <td>{{ professeur.ville }}</td>
             </tr>
             <tr>
-                <th>Tel</th>
+                <th>N°Téléphone</th>
                 <td>{{ professeur.tel }}</td>
             </tr>
             <tr>
-                <th>Mail</th>
+                <th>Adresse mail</th>
                 <td>{{ professeur.mail }}</td>
             </tr>
         </tbody>
+    </table>
+
+    <br>
+
+    <table>
+    <thead>
+        <tr>
+            <th>Cours</th>
+            <th>Heure Début</th>
+            <th>Heure Fin</th>
+            <th>Jour</th>
+            <th>Nombre d'élèves inscrits</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cours in professeur.cours %}
+        <tr>
+            <td><a href="{{ path('app_cours_show', {'id': cours.id}) }}">{{ cours.libelle }}</a></td>
+            <td>{{ cours.heureDebut|date('H:i') }}</td>
+            <td>{{ cours.heureFin|date('H:i') }}</td>
+            <td>{{ cours.dateCours }}</td>
+            <td>{{ cours.inscriptions|length }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
     </table>
 
     <a href="{{ path('app_professeur_index') }}">Revenir à la liste</a>
@@ -53,6 +74,4 @@
                     {{ include('professeur/_delete_form.html.twig') }}                
                     {% else %}
                     {% endif %}
-
-    
 {% endblock %}
