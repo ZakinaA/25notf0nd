@@ -11,13 +11,27 @@
                 <th>Email</th>
                 <td>{{ user.email }}</td>
             </tr>
+            {% set roleLabels = {
+                'ROLE_ADMIN': 'Administrateur',
+                'ROLE_ADHERENT': 'Adherent',
+                'ROLE_GESTION': 'Gestionnaire'
+            } %}
+
             <tr>
                 <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>
+                    {% for role in user.roles %}
+                        {{ roleLabels[role] ?? role }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
             </tr>
             <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
+                <th>Nom</th>
+                <td>{{ user.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ user.prenom }}</td>
             </tr>
         </tbody>
     </table>
