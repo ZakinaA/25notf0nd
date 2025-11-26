@@ -48,32 +48,40 @@
         <br>
             <thead>
             <tr>
-                <th style="text-align:center; vertical-align:middle;">Élèves du cours</th>
+            <th>N°</th>
+            <th>Élèves du cours</th>
+            
+            <th>Date de naissance</th>
+            
             </tr>
             </thead>
             <tbody>
+            {% if cour.inscriptions|length %}
+            {% for inscription in cour.inscriptions %}
             <tr>
-                <td style="text-align:center; vertical-align:middle;">
-                {# Remplacez 'app_eleve_show' par le nom de votre route si différent #}
-                {% if cour.inscriptions|length %}
-                    {% for inscription in cour.inscriptions %}
-                    <a href="{{ path('app_eleves_show', {'id': inscription.eleves.id}) }}">
-                        {{ inscription.eleves.nom }}
-                    </a>{% if not loop.last %}|{% endif %}
-                    {% endfor %}
-                {% else %}
-                    Aucun élève inscrit
-                {% endif %}
-                </td>
+            <td style="border-right: 1px solid #ddd;">{{ loop.index }}</td>
+            <td style="border-right: 1px solid #ddd;">
+            <a href="{{ path('app_eleves_show', {'id': inscription.eleves.id}) }}">
+                {{ inscription.eleves.prenom }} {{ inscription.eleves.nom }}
+            </a>
+            </td>
+            
+            <td>{{ inscription.eleves.dateNaiss ? inscription.eleves.dateNaiss|date('d/m/Y') : '' }}</td>
+            
             </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+            <td colspan="{{ is_granted('ROLE_ADMIN') or is_granted('ROLE_ADHERENT') ? 3 : 2 }}">Aucun élève inscrit</td>
+            </tr>
+            {% endif %}
             </tbody>
+
+            
+
+            
+            </thead>
         </table>
-
-
-
-
-
-
 
 
 
