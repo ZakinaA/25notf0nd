@@ -8,7 +8,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
                 <th>Prenom</th>
                 <th>Date Naissance</th>
@@ -18,7 +17,6 @@
         <tbody>
         {% for elefe in eleves %}
             <tr>
-                <td>{{ elefe.id }}</td>
                 <td>{{ elefe.nom }}</td>
                 <td>{{ elefe.prenom }}</td>
                 <td>{{ elefe.dateNaiss ? elefe.dateNaiss|date('Y-m-d') : '' }}</td>
