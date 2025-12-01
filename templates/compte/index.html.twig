@@ -7,24 +7,36 @@
 
     <table class="table">
         <tbody>
+            
             <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
+                <th>Prénom</th>
+                <td>{{ user.prenom }}</td>
             </tr>
             <tr>
+                <th>Nom</th>
+                <td>{{ user.nom }}</td>
+            </tr>
+            
+                <tr>
                 <th>Email</th>
                 <td>{{ user.email }}</td>
             </tr>
-            <tr>
+                {% set roleLabels = {
+                'ROLE_ADMIN': 'Administrateur',
+                'ROLE_ADHERENT': 'Adherent',
+                'ROLE_GESTION': 'Gestionnaire'
+            } %}
+                <tr>
                 <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
+                <td>
+                    {% for role in user.roles %}
+                        {{ roleLabels[role] ?? role }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
             </tr>
         </tbody>
     </table>
+    
     {% if is_granted('ROLE_ADHERENT') %}
 <br>
     <table>
