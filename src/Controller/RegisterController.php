@@ -1,9 +1,9 @@
 <?php
-
 namespace App\Controller;
 
-use App\Entity\User; // L'entité représentant ton utilisateur
-use App\Form\RegisterFormType; // La classe qui définit la structure de ton formulaire
+use App\Entity\User;
+use App\Entity\Role; // Ajout de l'import de l'entité Role
+use App\Form\RegisterFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,44 +16,52 @@ final class RegisterController extends AbstractController
     #[Route('/register', name: 'app_register')]
     public function index(
         Request $request,
-        UserPasswordHasherInterface $userPasswordHasher, // Pour hacher le mot de passe
-        EntityManagerInterface $entityManager // Pour interagir avec la base de données
+        UserPasswordHasherInterface $userPasswordHasher,
+        EntityManagerInterface $entityManager
     ): Response {
         // 1. Création d'une nouvelle instance de l'entité User
         $user = new User();
-
+        
         // 2. Création du formulaire en utilisant la classe RegisterFormType
         $form = $this->createForm(RegisterFormType::class, $user);
         
         // 3. Traitement de la requête : lie les données POST/formulaire à l'objet $form
         $form->handleRequest($request);
-
-        // 4. Vérification de la soumission et de la validité (grâce aux contraintes dans RegisterFormType)
+        
+        // 4. Vérification de la soumission et de la validité
         if ($form->isSubmitted() && $form->isValid()) {
             
-            // --- HACHAGE SÉCURISÉ DU MOT DE PASSE (CRITIQUE !) ---
-            // Le mot de passe en clair est récupéré du champ 'plainPassword' du formulaire.
+            // --- ATTRIBUTION DU RÔLE ID 2 ---
+            $role = $entityManager->getRepository(Role::class)->find(2);
+            
+            if ($role) {
+                $user->setRole($role);
+            } else {
+                // Gestion d'erreur si le rôle n'existe pas
+                $this->addFlash('error', 'Erreur lors de l\'attribution du rôle.');
+                return $this->redirectToRoute('app_register');
+            }
+            
+            // --- HACHAGE SÉCURISÉ DU MOT DE PASSE ---
             $hashedPassword = $userPasswordHasher->hashPassword(
                 $user,
                 $form->get('plainPassword')->getData()
             );
             $user->setPassword($hashedPassword);
-            $user->setRoles(['ROLE_ADHERENT']); // Attribution d'un rôle par défaut
-
+            
             // 5. Enregistrement de l'utilisateur en base de données
             $entityManager->persist($user);
             $entityManager->flush();
-
+            
             // Ajout d'un message flash
             $this->addFlash('success', 'Votre compte a été créé avec succès ! Vous pouvez maintenant vous connecter.');
-
-            // 6. Redirection vers la page de connexion (assurez-vous que 'app_signin' est votre route de connexion)
+            
+            // 6. Redirection vers la page de connexion
             return $this->redirectToRoute('app_login'); 
         }
-
+        
         // 7. Affichage du formulaire dans la vue
         return $this->render('register/index.html.twig', [
-            // On passe l'objet form créé à la vue Twig
             'RegisterForm' => $form->createView(),
         ]);
     }
