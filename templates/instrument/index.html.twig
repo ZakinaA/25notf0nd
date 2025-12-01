@@ -1,10 +1,9 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}eMusic : Instruments{% endblock %}
 
 {% block body %}
     <h1>Liste des instruments disponibles</h1>
-
+    
     <table class="table">
         <thead>
             <tr>
@@ -14,7 +13,9 @@
                 <th>Utilisation</th>
                 <th>Marque</th>
                 <th>Couleur</th>
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_ADHERENT') %}
                 <th>Prêt</th>
+                {% endif %}
                 <th>Actions</th>
             </tr>
         </thead>
@@ -23,29 +24,37 @@
             <tr>
                 <td>{{ instrument.typeInstrument.libelle }}</td>
                 <td>{{ instrument.numSerie }}</td>
-                <td>{{ instrument.dateAchat ? instrument.dateAchat|date('d/m/Y') : '' }} </td>
+                <td>{{ instrument.dateAchat ? instrument.dateAchat|date('d/m/Y') : '' }}</td>
                 <td>{{ instrument.utilisation }}</td>
                 <td>{{ instrument.Marque.libelle }}</td>
                 <td>{{ instrument.Couleur.Nom }}</td>
-                <td><a href="{{ path('app_contrat_pret_show', {'id': instrument.id}) }}"/>Contrat</td>
+                
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_ADHERENT') %}
+                <td>
+                    {% if instrument.contratPrets is not empty %}
+                        <a href="{{ path('app_contrat_pret_show', {'id': instrument.contratPrets|first.id}) }}">Consulter</a>
+                    {% else %}
+                        Aucun prêt
+                    {% endif %}
+                </td>
+                {% endif %}
+                
                 <td>
                     <a href="{{ path('app_instrument_show', {'id': instrument.id}) }}">Consulter</a>
-                    
                     {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('app_instrument_edit', {'id': instrument.id}) }}">Modifier</a>                    
-                    {% else %}
+                    <a href="{{ path('app_instrument_edit', {'id': instrument.id}) }}">Modifier</a>
                     {% endif %}
-                    
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">Aucune données trouvées</td>
+                <td colspan="8">Aucune données trouvées</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    
     <button class="btn">
-    <a href="{{ path('app_instrument_new') }}">Créer nouveau</a>
+        <a href="{{ path('app_instrument_new') }}">Créer nouveau</a>
     </button>
 {% endblock %}

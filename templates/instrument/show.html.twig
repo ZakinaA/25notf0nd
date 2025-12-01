@@ -13,6 +13,26 @@
             <span class="zoom">
             <img src="{{ asset(photo) }}" title="{{ instrument.typeInstrument.libelle ~ ' ' ~ instrument.Marque.libelle}}" width ="300" />
             </span>
+
+        <span style="padding:10px 15px; border:1px solid #ccc; border-radius:5px; display:flex; align-items:center; height:100%;">
+            {% set actif = false %}
+
+            {% for contrat in instrument.contratPrets %}
+                {% if contrat.dateFin >= date() %}
+                {% set actif = true %}
+                {% endif %}
+            {% endfor %}
+
+            {% if actif %}
+                <strong style="color:red;">Instrument prêté</strong>
+            {% else %}
+                <strong style="color:green;">Instrument disponible</strong>
+            {% endif %}
+            </span>
+
+
+<br>
+            
             <tr>
                 <th>Numéro de série</th>
                 <td>{{ instrument.numSerie }}</td>
