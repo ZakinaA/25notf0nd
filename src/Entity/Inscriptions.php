@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\InscriptionsRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -31,6 +32,9 @@ class Inscriptions
 
     #[ORM\OneToMany(mappedBy: 'cours', targetEntity: Inscriptions::class, cascade: ['persist', 'remove'])]
     private Collection $inscriptions;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTime $dateInscription = null;
 
 
     public function getId(): ?int
@@ -135,6 +139,18 @@ class Inscriptions
                 $inscription->setCours(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDateInscription(): ?\DateTime
+    {
+        return $this->dateInscription;
+    }
+
+    public function setDateInscription(\DateTime $dateInscription): static
+    {
+        $this->dateInscription = $dateInscription;
 
         return $this;
     }

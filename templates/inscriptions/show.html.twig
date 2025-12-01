@@ -1,26 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscriptions{% endblock %}
+{% block title %}Détails de l'inscription{% endblock %}
 
 {% block body %}
-    <h1>Inscriptions</h1>
+    <h1>Détails de l'inscription #{{ inscription.id }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ inscription.id }}</td>
-            </tr>
-            <tr>
-                <th>Nombre_paiments</th>
-                <td>{{ inscription.nombrePaiments }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <section>
+        <h2>👤 Informations de l'élève</h2>
+        <p><strong>Nom :</strong> {{ inscription.eleves.nom }} {{ inscription.eleves.prenom }}</p>
+        <p><strong>Date de naissance :</strong> {{ inscription.eleves.dateNaiss ? inscription.eleves.dateNaiss|date('d/m/Y') : 'Non définie' }}</p>
+    </section>
 
-    <a href="{{ path('app_inscriptions_index') }}">back to list</a>
+    <section>
+        <h2>📖 Informations du cours</h2>
+        <p><strong>Cours :</strong> {{ inscription.cours.libelle }}</p>
+        <p><strong>Âge minimum :</strong> {{ inscription.cours.ageMini }} ans</p>
+        <p><strong>Âge maximum :</strong> {{ inscription.cours.ageMaxi }} ans</p>
+        <p><strong>Horaire :</strong> {{ inscription.cours.dateCours }} de {{ inscription.cours.heureDebut ? inscription.cours.heureDebut|date('H:i') : '' }} à {{ inscription.cours.heureFin ? inscription.cours.heureFin|date('H:i') : '' }}</p>
+        <p><strong>Professeur :</strong> 
+            {% if inscription.cours.professeur %}
+                {{ inscription.cours.professeur.nom }} {{ inscription.cours.professeur.prenom }}
+            {% else %}
+                <span style="color: #6c757d;">Non assigné</span>
+            {% endif %}
+        </p>
+    </section>
 
-    <a href="{{ path('app_inscriptions_edit', {'id': inscription.id}) }}">edit</a>
+    <section>
+        <h2>💰 Informations de paiement</h2>
+        <p><strong>Nombre de paiements :</strong> {{ inscription.nombrePaiments }}</p>
+        <p><strong>Date d'inscription :</strong> {{ inscription.dateInscription ? inscription.dateInscription|date('d/m/Y') : 'Non définie' }}</p>
+    </section>
 
-    {{ include('inscriptions/_delete_form.html.twig') }}
+    <div style="margin-top: 2rem;">
+        <a href="{{ path('app_inscriptions_index') }}" class="btn">← Retour à la liste</a>
+        
+        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GESTION') %}
+            <a href="{{ path('app_inscriptions_edit', {'id': inscription.id}) }}" class="btn btn--edit">Modifier</a>
+            
+            <form method="post" 
+                  action="{{ path('app_inscriptions_delete', {'id': inscription.id}) }}" 
+                  style="display:inline;"
+                  onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette inscription ?');">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ inscription.id) }}">
+                <button type="submit" style="background-color: #dc3545; color: white;">🗑️ Supprimer</button>
+            </form>
+        {% endif %}
+    </div>
 {% endblock %}
