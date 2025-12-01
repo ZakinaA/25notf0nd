@@ -108,4 +108,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->role = $role;
         return $this;
     }
+
+    public function setRoles(array $roles): static
+    {
+        // This method is required by the interface but roles are managed via the role relationship
+        // To set roles, use setRole() with a Role entity instead
+        return $this;
+    }
 }
