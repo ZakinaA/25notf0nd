@@ -42,13 +42,19 @@ final class ContratPretController extends AbstractController
         ]);
     }
 
+
     #[Route('/{id}', name: 'app_contrat_pret_show', methods: ['GET'])]
     public function show(ContratPret $contratPret): Response
     {
+        // Récupérer tous les contrats de prêt pour cet instrument
+        $contratPrets = $contratPret->getInstrument()->getContratPrets();
+        
         return $this->render('contrat_pret/show.html.twig', [
-            'contrat_pret' => $contratPret,
+            'contrat_prets' => $contratPrets,
         ]);
     }
+
+
 
     #[Route('/{id}/edit', name: 'app_contrat_pret_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, ContratPret $contratPret, EntityManagerInterface $entityManager): Response
@@ -78,4 +84,14 @@ final class ContratPretController extends AbstractController
 
         return $this->redirectToRoute('app_contrat_pret_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+
+
+
+
+
+
+
+
 }

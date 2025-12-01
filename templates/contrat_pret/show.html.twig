@@ -1,50 +1,72 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ContratPret{% endblock %}
+{% block title %}Contrats de Prêt{% endblock %}
 
 {% block body %}
-    <h1>ContratPret</h1>
+    <h1>Contrats de Prêt</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ contrat_pret.id }}</td>
-            </tr>
-            <tr>
-                <th>DateDebut</th>
-                <td>{{ contrat_pret.dateDebut ? contrat_pret.dateDebut|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>DateFin</th>
-                <td>{{ contrat_pret.dateFin ? contrat_pret.dateFin|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>AttestationAssurance</th>
-                <td>{{ contrat_pret.attestationAssurance }}</td>
-            </tr>
-            <tr>
-                <th>EtatDetailleDebut</th>
-                <td>{{ contrat_pret.etatDetailleDebut }}</td>
-            </tr>
-            <tr>
-                <th>EtatDetailleRetour</th>
-                <td>{{ contrat_pret.etatDetailleRetour }}</td>
-            </tr>
-            <tr>
-                <th>Eleve</th>
-                <td><a href="{{ path('app_eleves_show', {'id': contrat_pret.eleves_id}) }}">{{ contrat_pret.eleves.nom }}</a></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_contrat_pret_index') }}">Revenir à la Liste</a>
-    
-    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GESTION') %}
-    <a href="{{ path('app_contrat_pret_edit', {'id': contrat_pret.id}) }}">Modifier</a>
-    {{ include('contrat_pret/_delete_form.html.twig') }}
+    {% if contrat_prets is not empty %}
+        {% for contrat_pret in contrat_prets %}
+            <div class="mb-4">
+                <h3>
+                    Contrat #{{ contrat_pret.id }} - 
+                    {% if contrat_pret.dateFin >= date() %}
+                        <span class="badge bg-success">En cours</span>
+                    {% else %}
+                        <span class="badge bg-secondary">Terminé</span>
+                    {% endif %}
+                </h3>
+                
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ contrat_pret.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date Début</th>
+                            <td>{{ contrat_pret.dateDebut ? contrat_pret.dateDebut|date('d/m/Y') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date Fin</th>
+                            <td>{{ contrat_pret.dateFin ? contrat_pret.dateFin|date('d/m/Y') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Attestation Assurance</th>
+                            <td>{{ contrat_pret.attestationAssurance }}</td>
+                        </tr>
+                        <tr>
+                            <th>État Détaillé Début</th>
+                            <td>{{ contrat_pret.etatDetailleDebut }}</td>
+                        </tr>
+                        <tr>
+                            <th>État Détaillé Retour</th>
+                            <td>{{ contrat_pret.etatDetailleRetour }}</td>
+                        </tr>
+                        <tr>
+                            <th>Élève</th>
+                            <td><a href="{{ path('app_eleves_show', {'id': contrat_pret.eleves.id}) }}">{{ contrat_pret.eleves.prenom }} {{ contrat_pret.eleves.nom }}</a></td>
+                        </tr>
+                        <tr>
+                            <th>Instrument</th>
+                            <td><a href="{{ path('app_instrument_show', {'id': contrat_pret.instrument.id}) }}">{{ contrat_pret.instrument.typeInstrument.libelle }} - N°{{ contrat_pret.instrument.numSerie }}</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GESTION') %}
+                <div class="mb-3">
+                    <a href="{{ path('app_contrat_pret_edit', {'id': contrat_pret.id}) }}" class="btn btn-warning">Modifier</a>
+                    {{ include('contrat_pret/_delete_form.html.twig', {'contrat_pret': contrat_pret}) }}
+                </div>
+                {% endif %}
+            </div>
+        {% endfor %}
     {% else %}
+        <p>Aucun contrat de prêt trouvé.</p>
     {% endif %}
+    <br>
+    <br>
+    <a href="{{ path('app_contrat_pret_index') }}" class="btn btn-primary">Revenir à la Liste</a>
 
-    
 {% endblock %}
