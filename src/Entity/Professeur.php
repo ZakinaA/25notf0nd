@@ -51,6 +51,9 @@ class Professeur
     #[ORM\ManyToMany(targetEntity: typeInstrument::class, inversedBy: 'professeurs')]
     private Collection $typeInstrument;
 
+    #[ORM\ManyToOne(inversedBy: 'professeurs')]
+    private ?role $role = null;
+
     public function __construct()
     {
         $this->cours = new ArrayCollection();
@@ -208,6 +211,18 @@ class Professeur
     public function removeTypeInstrument(typeInstrument $typeInstrument): static
     {
         $this->typeInstrument->removeElement($typeInstrument);
+
+        return $this;
+    }
+
+    public function getRole(): ?role
+    {
+        return $this->role;
+    }
+
+    public function setRole(?role $role): static
+    {
+        $this->role = $role;
 
         return $this;
     }
