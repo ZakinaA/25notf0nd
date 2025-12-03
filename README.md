@@ -1,7 +1,4 @@
 # 25NotF0nd
-_(juste en dessous des badges sympatiques à placer)_
-
-[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)  [![forthebadge](http://forthebadge.com/images/badges/powered-by-electricity.svg)](http://forthebadge.com)
 
 E-Music est une application web de gestion complète pour les écoles de musique, développée avec Symfony. Elle permet de centraliser toutes les activités administratives et pédagogiques.
 
