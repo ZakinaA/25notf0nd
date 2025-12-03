@@ -40,7 +40,7 @@ security:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/intervention, roles: [ROLE_ADMIN, ROLE_GESTION] }
-        - { path: ^/inscriptions, roles: [ROLE_ADMIN, ROLE_GESTION] }
+        - { path: ^/inscriptions, roles: ROLE_ADHERENT }
         - { path: ^/contrat_pret, roles: [ROLE_ADMIN, ROLE_GESTION] }
         - { path: ^/compte, roles: [ROLE_ADMIN, ROLE_ADHERENT, ROLE_GESTION] }
         - { path: ^/user, roles: [ROLE_ADMIN] }
