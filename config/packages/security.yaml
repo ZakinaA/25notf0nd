@@ -39,7 +39,6 @@ security:
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/inscriptions, roles: [ROLE_ADMIN, ROLE_GESTION] }
         - { path: ^/intervention, roles: [ROLE_ADMIN, ROLE_GESTION] }
         - { path: ^/inscriptions, roles: ROLE_ADHERENT }
         - { path: ^/contrat_pret, roles: [ROLE_ADMIN, ROLE_GESTION] }
