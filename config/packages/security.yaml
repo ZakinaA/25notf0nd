@@ -41,7 +41,11 @@ security:
         - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/inscriptions, roles: [ROLE_ADMIN, ROLE_GESTION] }
         - { path: ^/intervention, roles: [ROLE_ADMIN, ROLE_GESTION] }
+        - { path: ^/inscriptions, roles: [ROLE_ADMIN, ROLE_GESTION] }
         - { path: ^/contrat_pret, roles: [ROLE_ADMIN, ROLE_GESTION] }
         - { path: ^/compte, roles: [ROLE_ADMIN, ROLE_ADHERENT, ROLE_GESTION] }
         - { path: ^/user, roles: [ROLE_ADMIN] }
         - { path: ^/professionnel, roles: [ROLE_ADMIN, ROLE_GESTION] }
+        - { path: ^/eleves, roles: [ROLE_ADMIN, ROLE_GESTION] }
+        - { path: ^/professeur, roles: [ROLE_ADMIN, ROLE_GESTION] }
+       
