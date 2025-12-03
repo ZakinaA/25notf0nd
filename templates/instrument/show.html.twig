@@ -119,9 +119,8 @@
     </table>
 {% endif %}
 
-<button class="btn">
     <a href="{{ path('app_instrument_index') }}">Retour à la liste</a>
-</button>
+    
     <br>
 {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GESTION') %}
                     <a href="{{ path('app_instrument_edit', {'id': instrument.id}) }}">Modifier</a>
