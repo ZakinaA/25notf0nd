@@ -22,9 +22,27 @@ cd 25notf0nd
 
 DATABASE_URL="mysql://root:@127.0.0.1:3307/emusic?serverVersion=10.11.2-MariaDB&charset=utf8mb4"
 
+## Installer les dépendances
+
+``composer install``
+``php bin/console doctrine:database:create``
+``php bin/console doctrine:migrations:migrate``
+
 ## Démarrage
 
 symfony server:start
+
+## Commandes utiles
+
+- php bin/console doctrine:migrations:migrate → Appliquer les migrations
+- symfony server:start → Démarrer le serveur local
+- php bin/console make:entity → Créer une nouvelle entité
+
+## Résolution des problèmes
+
+- Vérifier les logs Symfony (var/log/dev.log)
+- Vérifier la configuration de la base de données
+- S’assurer que les permissions des dossiers sont correctes (var, vendor)
 
 ## Fabriqué avec
 
