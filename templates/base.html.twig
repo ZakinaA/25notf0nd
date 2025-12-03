@@ -431,10 +431,11 @@ footer {
           {% else  %}
           
           {% endif %}
+        {% if is_granted('ROLE_ADMIN')or is_granted('ROLE_GESTION') %}
         <br>
           <a href="{{ path('app_professeur_index') }}">🧑‍🏫Professeurs</a>
         <br>
-        
+        {% endif %}
         {% if is_granted('ROLE_ADMIN')or is_granted('ROLE_GESTION') %}
           <br>
           <a href="{{ path('app_contrat_pret_index') }}">📝Contrats Prêts</a>
