@@ -1,4 +1,4 @@
-# 25NotF0nd
+# 25NotF0nd - E-Music
 
 E-Music est une application web de gestion complète pour les écoles de musique, développée avec Symfony. Elle permet de centraliser toutes les activités administratives et pédagogiques.
 
