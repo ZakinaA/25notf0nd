@@ -424,10 +424,14 @@ footer {
         <br>
           <a href="{{ path('app_cours_index') }}">📖Cours</a>
         <br>
+        {% if is_granted('ROLE_ADMIN')or is_granted('ROLE_GESTION') %}
+          <br>
+          <a href="{{ path('app_professionnel_index') }}">🗂️Professionnel</a>
         <br>
-        
-          <a href="{{ path('app_inscriptions_index') }}">📄Inscriptions</a>
-        <br>
+          {% else  %}
+          
+          {% endif %}
+          
         {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GESTION') %}
           <br>
           <a href="{{ path('app_intervention_index') }}">🔧Interventions</a>
