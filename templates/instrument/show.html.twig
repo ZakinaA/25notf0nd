@@ -42,11 +42,12 @@
                 <th>Date d'achat</th>
                 <td>{{ instrument.dateAchat ? instrument.dateAchat|date('d/m/Y') : '' }}</td>
             </tr>
-            
+            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GESTION') %}
             <tr>
                 <th>Prix</th>
                 <td>{{ instrument.prixAchat }}</td>
             </tr>
+            {% endif %}
 
             <tr>
                 <th>Utilisation</th>
@@ -90,7 +91,8 @@
     </table>
 
     <br>
-
+    
+{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GESTION') %}
     <table class="table">
         <tbody>
             <tr>
@@ -115,7 +117,8 @@
             {% endif %}
         </tbody>
     </table>
-    
+{% endif %}
+
 <button class="btn">
     <a href="{{ path('app_instrument_index') }}">Retour à la liste</a>
 </button>
