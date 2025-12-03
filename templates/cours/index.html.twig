@@ -5,6 +5,12 @@
 {% block body %}
 <h1>Liste des cours de musique</h1>
 
+<div style="display: flex; justify-content: flex-end; margin-bottom: 15px;">
+    <a href="{{ path('app_inscriptions_index') }}" class="btn btn-primary">
+        S'inscrire à un cours
+    </a>
+</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -41,11 +47,11 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">Pas de données trouvées.</td>
+                <td colspan="6">Pas de données trouvées.</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
+    </tbody>
+</table>
 
-    <a href="{{ path('app_cours_new') }}">Créer nouveau</a>
+<a href="{{ path('app_cours_new') }}">Créer nouveau</a>
 {% endblock %}

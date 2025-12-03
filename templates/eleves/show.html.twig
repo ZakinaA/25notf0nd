@@ -8,10 +8,6 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ elefe.id }}</td>
-            </tr>
-            <tr>
                 <th>Nom</th>
                 <td>{{ elefe.nom }}</td>
             </tr>
@@ -19,14 +15,18 @@
                 <th>Prenom</th>
                 <td>{{ elefe.prenom }}</td>
             </tr>
+            {% if is_granted('ROLE_ADMIN')or is_granted('ROLE_GESTION') %}
             <tr>
-                <th>Date_naiss</th>
+                <th>Date de naissance</th>
                 <td>{{ elefe.dateNaiss ? elefe.dateNaiss|date('Y-m-d') : '' }}</td>
             </tr>
+            {% endif %}
         </tbody>
     </table>
 
     <br>
+{% if is_granted('ROLE_ADMIN')or is_granted('ROLE_GESTION') %}
+
     <table class="table">
         <tbody>
             <tr>
@@ -93,7 +93,7 @@
             {% endif %}
         </tbody>
     </table>
-
+{% endif %}
     <a href="{{ path('app_eleves_index') }}">Revenir à la Liste</a>
     {% if is_granted('ROLE_ADMIN')or is_granted('ROLE_GESTION') %}
                     <a href="{{ path('app_eleves_edit', {'id': elefe.id}) }}">Modifier</a>    
