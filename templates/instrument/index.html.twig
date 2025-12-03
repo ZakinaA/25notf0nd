@@ -54,7 +54,7 @@
         </tbody>
     </table>
     
-    <button class="btn">
+{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GESTION') %}
         <a href="{{ path('app_instrument_new') }}">Créer nouveau</a>
-    </button>
+{% endif %}
 {% endblock %}

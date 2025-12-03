@@ -46,5 +46,5 @@ security:
         - { path: ^/user, roles: [ROLE_ADMIN] }
         - { path: ^/professionnel, roles: [ROLE_ADMIN, ROLE_GESTION] }
         - { path: ^/eleves, roles: [ROLE_ADMIN, ROLE_GESTION] }
-        - { path: ^/professeur, roles: [ROLE_ADMIN, ROLE_GESTION] }
+        - { path: ^/professeur, roles: [ROLE_ADMIN, ROLE_GESTION, ROLE_ADHERENT] }
        

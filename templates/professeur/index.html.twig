@@ -10,7 +10,7 @@
             <tr>
                 <th>Nom</th>
                 <th>Prenom</th>
-                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_ADHERENT') %}
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GESTION') %}
                 <th>NumRue</th>
                 <th>Rue</th>
                 <th>Copos</th>
@@ -25,9 +25,10 @@
         <tbody>
         {% for professeur in professeurs %}
             <tr>
+            
                 <td>{{ professeur.nom }}</td>
                 <td>{{ professeur.prenom }}</td>
-                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_ADHERENT') %}
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GESTION') %}
                 <td>{{ professeur.numRue }}</td>
                 <td>{{ professeur.rue }}</td>
                 <td>{{ professeur.copos }}</td>
@@ -53,6 +54,7 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_professeur_new') }}">Create new</a>
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GESTION') %}
+    <a href="{{ path('app_professeur_new') }}">Ajouter un professeur</a>
+    {% endif %}
 {% endblock %}

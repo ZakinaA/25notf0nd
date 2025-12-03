@@ -1,4 +1,48 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{% extends 'base.html.twig' %}
+
+{% block title %}S'inscrire au cours{% endblock %}
+
+{% block body %}
+    <h1>Inscription au cours</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Cours</th>
+                <td>{{ cours.libelle }}</td>
+            </tr>
+            <tr>
+                <th>Professeur</th>
+                <td>
+                    {% if cours.professeur %}
+                        {{ cours.professeur.nom }} {{ cours.professeur.prenom }}
+                    {% else %}
+                        Non assigné
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Date du cours</th>
+                <td>{{ cours.dateCours }}</td>
+            </tr>
+            <tr>
+                <th>Horaire</th>
+                <td>{{ cours.heureDebut ? cours.heureDebut|date('H:i') : '' }} - {{ cours.heureFin ? cours.heureFin|date('H:i') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Âge</th>
+                <td>{{ cours.ageMini }} - {{ cours.ageMaxi }} ans</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+
+    <h2>Formulaire d'inscription</h2>
+    
+    {{ include('inscriptions/_form.html.twig', {'button_label': 'Confirmer l\'inscription'}) }}
+
+    <br>
+    <a href="{{ path('app_inscriptions_index') }}">Retour à la liste</a>
+
+{% endblock %}

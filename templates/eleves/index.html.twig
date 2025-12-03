@@ -37,6 +37,7 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_eleves_new') }}">Create new</a>
+{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GESTION') %}
+    <a href="{{ path('app_eleves_new') }}">Créer un nouvel élève</a>
+{% endif %}
 {% endblock %}

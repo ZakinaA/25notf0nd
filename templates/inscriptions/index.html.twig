@@ -22,7 +22,6 @@
                 {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GESTION') %}
                     <th>Nombre de paiements</th>
                 {% endif %}
-                <th>Date d'inscription</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -54,16 +53,10 @@
                     </td>
                 {% endif %}
                 <td>
-                    {% if inscription.dateInscription %}
-                        {{ inscription.dateInscription|date('d/m/Y') }}
-                    {% else %}
-                        <span style="color: #dc3545;">Non définie</span>
-                    {% endif %}
-                </td>
-                <td>
-                    <a href="{{ path('app_inscriptions_show', {'id': inscription.id}) }}">Consulter</a>
+                    <a href="{{ path('app_inscriptions_form', {'id': inscription.cours.id}) }}">S'inscrire</a>
                     
                     {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GESTION') %}
+                        <a href="{{ path('app_inscriptions_show', {'id': inscription.id}) }}">Consulter</a>
                         <a href="{{ path('app_inscriptions_edit', {'id': inscription.id}) }}">Modifier</a>
                     {% endif %}
                 </td>

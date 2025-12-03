@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Entity\Inscriptions;
+use App\Entity\Cours;
 use App\Form\InscriptionsType;
 use App\Repository\InscriptionsRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -45,6 +46,40 @@ final class InscriptionsController extends AbstractController
         return $this->render('inscriptions/new.html.twig', [
             'inscription' => $inscription,
             'form' => $form,
+        ]);
+    }
+
+    #[Route('/form/{id}', name: 'app_inscriptions_form', methods: ['GET', 'POST'], requirements: ['id' => '\d+'])]
+    public function inscriptionForm(Request $request, Cours $cours, EntityManagerInterface $entityManager): Response
+    {
+        $inscription = new Inscriptions();
+        $inscription->setCours($cours);
+        
+        // Si l'utilisateur est connecté et a un élève associé, pré-remplir l'élève
+        if ($this->getUser() && method_exists($this->getUser(), 'getEleve') && $this->getUser()->getEleve()) {
+            $inscription->setEleves($this->getUser()->getEleve());
+        }
+        
+        $form = $this->createForm(InscriptionsType::class, $inscription);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Définir la date d'inscription
+            if ($inscription->getDateInscription() === null) {
+                $inscription->setDateInscription(new \DateTime());
+            }
+            
+            $entityManager->persist($inscription);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Inscription enregistrée avec succès !');
+            return $this->redirectToRoute('app_inscriptions_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('inscriptions/form.html.twig', [
+            'form' => $form,
+            'cours' => $cours,
+            'inscription' => $inscription,
         ]);
     }
 
