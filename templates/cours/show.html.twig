@@ -9,9 +9,9 @@
         <tbody>
             <tr>
                 <th>Professeur du Cours</th>
-                <td><a href="{{ path('app_professeur_show', {'id': cour.professeur.id}) }}">
-                        {{ cour.professeur.nom }}
-                    </a></td>
+                <td>
+                    {{ cour.professeur.nom }}
+                </td>
             </tr>
             <tr>
                 <th>Libelle</th>
@@ -39,17 +39,15 @@
             </tr>
         </tbody>
 
-
+{% if is_granted('ROLE_ADMIN')or is_granted('ROLE_GESTION') %}
         <table class="table">
         <br>
             <thead>
                 <tr>
                 <th>N°</th>
                 <th>Élèves du cours</th>
-                {% if is_granted('ROLE_ADMIN')or is_granted('ROLE_GESTION') %}
                 <th>Date de naissance</th>
                 </tr>
-                {% endif %}
             </thead>
                 <tbody>
                 {% if cour.inscriptions|length %}
@@ -57,9 +55,7 @@
                     <tr>
                         <td style="border-right: 1px solid #ddd;">{{ loop.index }}</td>
                         <td style="border-right: 1px solid #ddd;">
-                            <a href="{{ path('app_eleves_show', {'id': inscription.eleves.id}) }}">
-                                {{ inscription.eleves.prenom }} {{ inscription.eleves.nom }}
-                            </a>
+                            {{ inscription.eleves.prenom }} {{ inscription.eleves.nom }}
                     </td>
 
                     {% if is_granted('ROLE_ADMIN')or is_granted('ROLE_GESTION') %}
@@ -75,9 +71,9 @@
                     </tr>
                 {% endif %}
                 </tbody>
+                {% endif %}
             </thead>
         </table>
-
 
 
     <a href="{{ path('app_cours_index') }}">Retour à la liste</a>

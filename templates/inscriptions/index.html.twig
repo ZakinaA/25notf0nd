@@ -14,10 +14,14 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Élève</th>
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GESTION') %}
+                    <th>Élève</th>
+                {% endif %}
                 <th>Cours</th>
                 <th>Professeur</th>
-                <th>Nombre de paiements</th>
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GESTION') %}
+                    <th>Nombre de paiements</th>
+                {% endif %}
                 <th>Date d'inscription</th>
                 <th>Actions</th>
             </tr>
@@ -25,12 +29,13 @@
         <tbody>
         {% for inscription in inscriptions %}
             <tr>
+            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GESTION') %}
                 <td>
                     <a href="{{ path('app_eleves_show', {'id': inscription.eleves.id}) }}" style="color: #3b5bdb; text-decoration: underline; cursor: pointer;">
                         {{ inscription.eleves.nom }} {{ inscription.eleves.prenom }}
                     </a><br>
-                   
                 </td>
+            {% endif %}
                 <td>
                     <a href="{{ path('app_cours_show', {'id': inscription.cours.id}) }}" style="color: #3b5bdb; text-decoration: underline; cursor: pointer;">
                         {{ inscription.cours.libelle }}
@@ -38,14 +43,16 @@
                 </td>
                 <td>
                     {% if inscription.cours.professeur %}
-                        <a href="{{ path('app_professeur_show', {'id': inscription.cours.professeur.id}) }}" style="color: #3b5bdb; text-decoration: underline; cursor: pointer;">
-                            {{ inscription.cours.professeur.nom }} {{ inscription.cours.professeur.prenom }}
-                        </a>
+                        {{ inscription.cours.professeur.nom }} {{ inscription.cours.professeur.prenom }}
                     {% else %}
                         <span style="color: #6c757d;">Non assigné</span>
                     {% endif %}
                 </td>
-                <td>{{ inscription.nombrePaiments }}</td>
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GESTION') %}
+                    <td>
+                    {{ inscription.nombrePaiments }}
+                    </td>
+                {% endif %}
                 <td>
                     {% if inscription.dateInscription %}
                         {{ inscription.dateInscription|date('d/m/Y') }}
