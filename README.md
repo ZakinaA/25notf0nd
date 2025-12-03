@@ -10,15 +10,15 @@ E-Music est une application web de gestion complète pour les écoles de musique
 - Base de données MySQL ou MariaDB
 - Serveur web (Apache/Nginx)
 
-### Installation
+## Installation
 
-# Cloner le projet
+### Cloner le projet
 
 git clone https://github.com/ZakinaA/25notf0nd.git
 
 cd 25notf0nd
 
-# Modifiez les paramètres de connexion à la base de données dans .env
+### Modifiez les paramètres de connexion à la base de données dans .env
 
 DATABASE_URL="mysql://root:@127.0.0.1:3307/emusic?serverVersion=10.11.2-MariaDB&charset=utf8mb4"
 
