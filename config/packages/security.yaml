@@ -43,3 +43,6 @@ security:
         - { path: ^/contrat_pret, roles: [ROLE_ADMIN, ROLE_GESTION] }
         - { path: ^/compte, roles: [ROLE_ADMIN, ROLE_ADHERENT, ROLE_GESTION] }
         - { path: ^/user, roles: [ROLE_ADMIN] }
+        - { path: ^/eleves, roles: [ROLE_ADMIN, ROLE_GESTION] }
+        - { path: ^/professeur, roles: [ROLE_ADMIN, ROLE_GESTION] }
+       
