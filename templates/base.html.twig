@@ -405,8 +405,7 @@ footer {
 
     
       </div>
-      <nav>
-      
+      <nav>      
         
           <a href="{{ path('app_accueil') }}">🏠Accueil</a>
         <br>
@@ -415,9 +414,13 @@ footer {
           <a href="{{ path('app_instrument_index') }}">🎸Instruments</a>
           
         <br>
+        {% if is_granted('ROLE_ADMIN')or is_granted('ROLE_GESTION') %}
         <br>
           <a href="{{ path('app_eleves_index') }}">🧒Élèves</a>
         <br>
+        {% else  %}
+          
+        {% endif %}
         <br>
           <a href="{{ path('app_cours_index') }}">📖Cours</a>
         <br>
@@ -432,11 +435,11 @@ footer {
           {% else  %}
           
           {% endif %}
-        
+        {% if is_granted('ROLE_ADMIN')or is_granted('ROLE_GESTION') %}
         <br>
           <a href="{{ path('app_professeur_index') }}">🧑‍🏫Professeurs</a>
         <br>
-        {% if is_granted('ROLE_ADMIN')or is_granted('ROLE_GESTION') %}
+        
           <br>
           <a href="{{ path('app_contrat_pret_index') }}">📝Contrats Prêts</a>
         <br>
