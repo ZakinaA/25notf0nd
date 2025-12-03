@@ -106,7 +106,7 @@
                     <tr>
                         <td>{{ intervention.dateDebut|date('d/m/Y') }}</td>
                         <td>{{ intervention.descriptif }}</td>
-                        <td>{{ intervention.professionnel.nom }}</td>
+                        <td><a href="{{ path('app_professionnel_show', {'id': intervention.professionnel.id}) }}">{{ intervention.professionnel.nom }} {{ intervention.professionnel.nom }}</a></td>
                         <td>{{ intervention.prix }}</td>
                     </tr>
                 {% endfor %}
