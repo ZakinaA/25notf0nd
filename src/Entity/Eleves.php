@@ -43,6 +43,9 @@ class Eleves
     #[ORM\OneToMany(targetEntity: ContratPret::class, mappedBy: 'eleves')]
     private Collection $contratPrets;
 
+    #[ORM\ManyToOne(inversedBy: 'eleves')]
+    private ?role $role = null;
+
     public function __construct()
     {
         $this->inscriptions = new ArrayCollection();
@@ -170,6 +173,18 @@ class Eleves
                 $contratPret->setEleves(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getRole(): ?role
+    {
+        return $this->role;
+    }
+
+    public function setRole(?role $role): static
+    {
+        $this->role = $role;
 
         return $this;
     }
