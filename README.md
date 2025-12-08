@@ -3,8 +3,8 @@
 E-Music est une application web de gestion complète pour les écoles de musique, développée avec Symfony. Elle permet de centraliser toutes les activités administratives et pédagogiques.
 
 ### Compte
-Admin = admin@gmail.com / admin
-Gestionnaire = gestionnaire@gmail.com / gestionnaire
+Admin = admin@gmail.com / admin <br>
+Gestionnaire = gestionnaire@gmail.com / gestionnaire <br>
 Adhérent = adherent@gmail.com / adherent
 
 ### Pré-requis
