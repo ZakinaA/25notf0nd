@@ -1,70 +1,150 @@
-# 25NotF0nd - E-Music
+# E-Music — Gestion d'École de Musique
 
-E-Music est une application web de gestion complète pour les écoles de musique, développée avec Symfony. Elle permet de centraliser toutes les activités administratives et pédagogiques.
+Application web complète de gestion administrative et pédagogique pour les écoles de musique, développée avec **Symfony 6**.
 
-### Compte
-Admin = admin@gmail.com / admin <br>
-Gestionnaire = gestionnaire@gmail.com / gestionnaire <br>
-Adhérent = adherent@gmail.com / adherent
+---
 
-### Pré-requis
+## Sommaire
 
-- PHP >= 8.1 ou supérieure
-- Symfony 6.x
-- Composer
-- Base de données MySQL ou MariaDB
-- Serveur web (Apache/Nginx)
+- [Présentation](#présentation)
+- [Prérequis](#prérequis)
+- [Installation](#installation)
+- [Démarrage](#démarrage)
+- [Déploiement sur Proxmox](#déploiement-sur-proxmox)
+- [Comptes de test](#comptes-de-test)
+- [Commandes utiles](#commandes-utiles)
+- [Résolution des problèmes](#résolution-des-problèmes)
+- [Auteurs](#auteurs)
+
+---
+
+## Présentation
+
+E-Music centralise toutes les activités d'une école de musique :
+
+- Gestion des adhérents et des inscriptions
+- Suivi pédagogique
+- Administration des cours et plannings
+- Gestion des rôles (Admin, Gestionnaire, Adhérent)
+
+---
+
+## Prérequis
+
+| Outil | Version minimale |
+|---|---|
+| PHP | >= 8.1 |
+| Symfony | 6.x |
+| Composer | Dernière stable |
+| Base de données | MySQL ou MariaDB |
+| Serveur web | Apache ou Nginx |
+
+---
 
 ## Installation
 
-### Cloner le projet
+### 1. Cloner le projet
 
-``git clone https://github.com/ZakinaA/25notf0nd.git``
-<br>
-``cd 25notf0nd``
+```bash
+git clone https://github.com/ZakinaA/25notf0nd.git
+cd 25notf0nd
+```
 
-### Modifiez les paramètres de connexion à la base de données dans .env
+### 2. Installer les dépendances
 
-``DATABASE_URL="mysql://root:@127.0.0.1:3307/emusic?serverVersion=10.11.2-MariaDB&charset=utf8mb4"``
+```bash
+composer install
+```
 
-## Installer les dépendances
+### 3. Configurer la base de données
 
-``composer install``
-<br>
-``php bin/console doctrine:database:create``
-<br>
-``php bin/console doctrine:migrations:migrate``
+Modifiez le fichier `.env` avec vos paramètres :
+
+```env
+DATABASE_URL="mysql://root:@127.0.0.1:3307/emusic?serverVersion=10.11.2-MariaDB&charset=utf8mb4"
+```
+
+### 4. Initialiser la base de données
+
+```bash
+php bin/console doctrine:database:create
+php bin/console doctrine:migrations:migrate
+```
+
+---
 
 ## Démarrage
 
-``symfony server:start``
+```bash
+symfony server:start
+```
+
+### Accès depuis le réseau local
+
+```
+http://172.20.177.13/accueil
+```
+
+### Login/mot de passe conteneur
+root / mpsymfony
+
+---
+
+## Comptes de test
+
+| Rôle | Email | Mot de passe |
+|---|---|---|
+| Admin | admin@gmail.com | admin |
+| Gestionnaire | gestionnaire@gmail.com | gestionnaire |
+| Adhérent | adherent@gmail.com | adherent |
+
+> Ces comptes sont réservés aux environnements de développement et de test. Ne pas utiliser en production.
+
+---
 
 ## Commandes utiles
 
-- ``php bin/console doctrine:migrations:migrate`` → Appliquer les migrations
-- ``symfony server:start`` → Démarrer le serveur local
-- ``php bin/console make:entity`` → Créer une nouvelle entité
+```bash
+# Appliquer les migrations
+php bin/console doctrine:migrations:migrate
 
-## Résolution des problèmes
+# Démarrer le serveur de développement
+symfony server:start
 
-- Vérifier les logs Symfony (var/log/dev.log)
-- Vérifier la configuration de la base de données
-- S’assurer que les permissions des dossiers sont correctes (var, vendor)
+# Créer une nouvelle entité
+php bin/console make:entity
 
-## Fabriqué avec
+# Vider le cache
+php bin/console cache:clear
 
-- PHP, Symfony
-- MySQL/MariaDB
-- HTML, CSS, JavaScript
-- Composer pour la gestion des dépendances
+# Lister les routes disponibles
+php bin/console debug:router
+```
 
-## Versions
+---
+
+## Stack technique
+
+- **Backend** : PHP 8.1, Symfony 6
+- **Base de données** : MySQL / MariaDB
+- **Frontend** : HTML, CSS, JavaScript
+- **Gestionnaire de dépendances** : Composer
+- **Infrastructure** : Proxmox (LXC / VM)
+
+---
+
+## Version
 
 **Dernière version :** 1.0
 
-## Auteurs
-- Nolann-Gueguen - Développeur
-- clelong14 - Développeuse
-- LiamDuval - Développeur
-- CAussant - Développeur
+---
 
+## Auteurs
+
+| Pseudo | Rôle |
+|---|---|
+| [Nolann-Gueguen](https://github.com/Nolann-Gueguen) | Développeur |
+| [clelong14](https://github.com/clelong14) | Développeuse |
+| [LiamDuval](https://github.com/LiamDuval) | Développeur |
+| [CAussant](https://github.com/CAussant) | Développeur |
+| [ZakinaA](https://github.com/ZakinaA) | Développeuse |
