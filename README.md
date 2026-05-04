@@ -10,10 +10,8 @@ Application web complète de gestion administrative et pédagogique pour les éc
 - [Prérequis](#prérequis)
 - [Installation](#installation)
 - [Démarrage](#démarrage)
-- [Déploiement sur Proxmox](#déploiement-sur-proxmox)
 - [Comptes de test](#comptes-de-test)
 - [Commandes utiles](#commandes-utiles)
-- [Résolution des problèmes](#résolution-des-problèmes)
 - [Auteurs](#auteurs)
 
 ---
